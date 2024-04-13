@@ -3,9 +3,8 @@
 [ext_resource type="Script" path="res://Scenes/main_screen.gd" id="1_3k6bo"]
 [ext_resource type="PackedScene" uid="uid://digfx032tves5" path="res://Scenes/pedestrian.tscn" id="2_eihxn"]
 [ext_resource type="PackedScene" uid="uid://cqrmn6a1pt71l" path="res://Scenes/DemonCar/car.tscn" id="3_636hp"]
-
-[ext_resource type="PackedScene" path="res://Scenes/blood.tscn" id="4_icjts"]
-[ext_resource type="PackedScene" path="res://Scenes/pentagram.tscn" id="4_nvv3w"]
+[ext_resource type="PackedScene" uid="uid://dlkmaowr37f78" path="res://Scenes/blood.tscn" id="4_icjts"]
+[ext_resource type="PackedScene" uid="uid://dw8elcqe870ht" path="res://Scenes/pentagram.tscn" id="4_nvv3w"]
 [ext_resource type="Texture2D" uid="uid://ceub26rlc45gc" path="res://Sprites/map.png" id="6_spaal"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_757d1"]
