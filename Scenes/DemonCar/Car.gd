@@ -3,6 +3,8 @@ extends CharacterBody2D
 @export var wheelBase = 70
 @export var steeringAngle = 20
 @export var engine_power = 800
+@export var friction = -0.9
+@export var drag = -0.001
 
 var acceleration
 var steerDirection
@@ -10,9 +12,17 @@ var steerDirection
 func _physics_process(delta):
 	acceleration = Vector2.ZERO
 	getInput()
+	applyFriction()
 	calcSteering(delta)
 	velocity += acceleration * delta
 	move_and_slide()
+
+func applyFriction():
+	if velocity.length() < 5 : 
+		velocity = Vector2.ZERO
+	var frictionForce = velocity * friction
+	var dragForce = velocity * velocity.length() * drag
+	acceleration += dragForce + frictionForce
 
 func getInput():
 	var turn = 0
