@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var wheelBase = 70
 @export var steeringAngle = 20
+@export var steeringRate = 60
 @export var engine_power = 2000
 @export var friction = -0.9
 @export var drag = -0.001
@@ -18,7 +19,7 @@ signal BloodTrackPlaced(pos)
 
 func _physics_process(delta):
 	acceleration = Vector2.ZERO
-	getInput()
+	getInput(delta)
 	applyFriction()
 	calcSteering(delta)
 	velocity += acceleration * delta
@@ -31,13 +32,21 @@ func applyFriction():
 	var dragForce = velocity * velocity.length() * drag
 	acceleration += dragForce + frictionForce
 
-func getInput():
+func getInput(delta):
 	var turn = 0
 	if Input.is_action_pressed("turnRight"):
 		turn += 1
 	if Input.is_action_pressed("turnLeft"):	
 		turn -= 1
-	steerDirection = turn * deg_to_rad(steeringAngle)
+	
+	if turn == 0:
+		steerDirection = 0
+	else:
+		steerDirection += turn * delta * deg_to_rad(steeringRate)
+		steerDirection = turn * min(abs(steerDirection), deg_to_rad(steeringAngle))
+		
+	print(steerDirection)
+	
 	if Input.is_action_pressed("accelerate"):
 		acceleration = transform.x * engine_power
 	if Input.is_action_pressed("brake"):
