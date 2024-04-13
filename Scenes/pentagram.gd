@@ -6,10 +6,8 @@ func _on_draw():
 	_allPoints.clear()
 	
 	print("points: %s" % points)
-	
+
 	for i in range(points.size()):
-		
-		# draw_circle(Vector2(points[i].x, points[i].y), 6, Color.BLACK)
 		
 		var pointA: Vector2 = points[i]
 		var pointB: Vector2 = points[i + 1 if i + 1 < points.size() else 0]
@@ -23,7 +21,7 @@ func _on_draw():
 		for x in range(left.x, right.x):
 			var y = m*x + c
 			_allPoints.append(Vector2(x, y))
-			#draw_circle(Vector2(x, y), 3, Color.PURPLE)
+			# draw_circle(Vector2(x, y), 3, Color.PURPLE)
 			
 	print("all points %s" % _allPoints.size())
 	
@@ -44,6 +42,7 @@ func is_covered_in_blood() -> bool:
 	
 func is_point_covered(point: Vector2, bloodAreas: Array) -> bool:
 	for bloodArea in bloodAreas:
+		# print("point %s, bloodArea.position %s, bloodArea.radius %s" % [point, bloodArea.position, bloodArea.radius])
 		if Geometry2D.is_point_in_circle(point, bloodArea.position, bloodArea.radius):
 			print("point %s" % point)
 			return true
