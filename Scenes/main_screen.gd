@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var pedestrian_scene: PackedScene
+@export var blood_scene: PackedScene
 
 func _ready():
 	$PedestrianTimer.start()
@@ -17,4 +18,13 @@ func _on_pedestrian_timer_timeout():
 #
 	# Spawn the mob by adding it to the Main scene.
 	add_child(pedestrian)
+	
+func _input(event):
+	if Input.is_action_pressed("click"):
+		var blood = blood_scene.instantiate()
+		blood.position = event.position
+		blood.name = "Blood"
+		add_child(blood, true)
+		
+	
 	
