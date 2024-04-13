@@ -1,14 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cei1e8gtakjed"]
+[gd_scene load_steps=7 format=3 uid="uid://cei1e8gtakjed"]
 
 [ext_resource type="Script" path="res://Scenes/main_screen.gd" id="1_3k6bo"]
 [ext_resource type="PackedScene" uid="uid://digfx032tves5" path="res://Scenes/pedestrian.tscn" id="2_eihxn"]
 [ext_resource type="PackedScene" uid="uid://cqrmn6a1pt71l" path="res://Scenes/DemonCar/car.tscn" id="3_636hp"]
 [ext_resource type="PackedScene" uid="uid://dlkmaowr37f78" path="res://Scenes/blood.tscn" id="4_icjts"]
 [ext_resource type="PackedScene" uid="uid://dw8elcqe870ht" path="res://Scenes/pentagram.tscn" id="4_nvv3w"]
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_757d1"]
-outlines = Array[PackedVector2Array]([PackedVector2Array(64, 64, 1088, 64, 1088, 576, 64, 576)])
-source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="Curve2D" id="Curve2D_fxmm3"]
 _data = {
@@ -30,9 +26,6 @@ position = Vector2(221, 244)
 
 [node name="PedestrianTimer" type="Timer" parent="."]
 wait_time = 3.0
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_757d1")
 
 [node name="PedestrianPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_fxmm3")
