@@ -45,7 +45,7 @@ func getInput(delta):
 		steerDirection += turn * delta * deg_to_rad(steeringRate)
 		steerDirection = turn * min(abs(steerDirection), deg_to_rad(steeringAngle))
 		
-	print(steerDirection)
+	# print(steerDirection)
 	
 	if Input.is_action_pressed("accelerate"):
 		acceleration = transform.x * engine_power

@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://Scenes/pentagram.gd" id="1_kd8s1"]
 
 [node name="Pentagram" type="Line2D"]
-points = PackedVector2Array(392, 176, 584, 512, 792, 160, 344, 432, 824, 440, 384, 184, 336, 288, 344, 440, 448, 504, 608, 520, 816, 448, 824, 376, 808, 200, 776, 152, 640, 128, 544, 136, 400, 168)
 closed = true
 default_color = Color(1, 0.517647, 1, 1)
 script = ExtResource("1_kd8s1")
