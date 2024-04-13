@@ -1,16 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://digfx032tves5"]
+[gd_scene load_steps=4 format=3 uid="uid://digfx032tves5"]
 
 [ext_resource type="Texture2D" uid="uid://wg8w3bot0wal" path="res://icon.svg" id="1_442mt"]
+[ext_resource type="Script" path="res://Scenes/pedestrian.gd" id="1_rrmj4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ufy58"]
-size = Vector2(128, 125)
+size = Vector2(31, 31)
 
-[node name="CharacterBody2D" type="RigidBody2D"]
+[node name="Pedestrian" type="CharacterBody2D"]
+script = ExtResource("1_rrmj4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(67, 64)
+position = Vector2(18, 15)
+scale = Vector2(0.234375, 0.234375)
 texture = ExtResource("1_442mt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(66, 64.5)
+position = Vector2(17.5, 15.5)
 shape = SubResource("RectangleShape2D_ufy58")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
