@@ -18,6 +18,4 @@ texture = ExtResource("1_442mt")
 position = Vector2(17.5, 15.5)
 shape = SubResource("RectangleShape2D_ufy58")
 
-[node name="MovementTimer" type="Timer" parent="."]
-
-[connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

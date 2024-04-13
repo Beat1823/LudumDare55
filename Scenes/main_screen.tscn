@@ -33,6 +33,9 @@ position = Vector2(221, 244)
 [node name="PedestrianTimer" type="Timer" parent="."]
 wait_time = 3.0
 
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_757d1")
+
 [node name="PedestrianPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_fxmm3")
 

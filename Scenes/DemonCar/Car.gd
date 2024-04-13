@@ -14,6 +14,8 @@ extends CharacterBody2D
 var acceleration
 var steerDirection
 
+signal BloodTrackPlaced(pos)
+
 func _physics_process(delta):
 	acceleration = Vector2.ZERO
 	getInput()
@@ -63,5 +65,7 @@ func _ready():
 	set_physics_process(true)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta):
-	pass
+	if Input.is_action_pressed("BloodTracks"):
+		BloodTrackPlaced.emit(position)
