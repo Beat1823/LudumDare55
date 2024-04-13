@@ -1,5 +1,9 @@
 extends Node2D
 
+@export var maxBloodLevel = 100.0
+@export var startingBloodlevel = 50.0
+var currentBloodLevel
+
 @export var pedestrian_scene: PackedScene
 @export var blood_scene: PackedScene
 
@@ -9,6 +13,7 @@ func _ready():
 	$PedestrianTimer.start()
 	var Car = get_node("Car")
 	Car.BloodTrackPlaced.connect(placeBlood)
+	currentBloodLevel = startingBloodlevel
 
 func _on_pedestrian_timer_timeout():
 	if PlayerData.pedestrian_count >= PEDESTRIAN_LIMIT:
@@ -22,10 +27,14 @@ func _on_pedestrian_timer_timeout():
 #
 	# Set the mob's position to a random location.
 	pedestrian.position = pedestrian_spawn_location.position
+	pedestrian.PedestrianHit.connect(FillBlood)
 #
 	# Spawn the mob by adding it to the Main scene.
 	add_child(pedestrian)
 	PlayerData.pedestrian_count += 1
+
+func FillBlood():
+	currentBloodLevel += 10.0
 
 func placeBlood(pos):
 	var canPlace = true
@@ -35,10 +44,11 @@ func placeBlood(pos):
 				canPlace = false
 				break
 				
-	if canPlace:
+	if canPlace && currentBloodLevel > 0:
 		var blood = blood_scene.instantiate()
 		blood.position = pos
 		blood.name = "Blood"
 		add_child(blood, true)
+		currentBloodLevel -= 1
 	
 	
