@@ -1,13 +1,17 @@
 extends CharacterBody2D
 
 @export var wheelBase = 70
-@export var steeringAngle = 15
+@export var steeringAngle = 20
+@export var engine_power = 800
 
+var acceleration
 var steerDirection
 
 func _physics_process(delta):
+	acceleration = Vector2.ZERO
 	getInput()
 	calcSteering(delta)
+	velocity += acceleration * delta
 	move_and_slide()
 
 func getInput():
@@ -16,10 +20,11 @@ func getInput():
 		turn += 1
 	if Input.is_action_pressed("turnLeft"):	
 		turn -= 1
-	steerDirection = turn * steeringAngle
-	velocity = Vector2.ZERO
+	steerDirection = turn * deg_to_rad(steeringAngle)
 	if Input.is_action_pressed("accelerate"):
-		velocity = transform.x * 500
+		acceleration = transform.x * engine_power
+	if Input.is_action_pressed("brake"):
+		acceleration = transform.x * -engine_power
 	
 func calcSteering(delta):
 	var rearWheel = position - transform.x * wheelBase/2.0
