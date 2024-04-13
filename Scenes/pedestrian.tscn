@@ -1,34 +1,66 @@
-[gd_scene load_steps=5 format=3 uid="uid://digfx032tves5"]
+[gd_scene load_steps=8 format=3 uid="uid://digfx032tves5"]
 
-[ext_resource type="Texture2D" uid="uid://wg8w3bot0wal" path="res://icon.svg" id="1_442mt"]
 [ext_resource type="Script" path="res://Scenes/pedestrian.gd" id="1_rrmj4"]
+[ext_resource type="Texture2D" uid="uid://dm4mhmo2qtq8s" path="res://Sprites/ped-man/ped-man-dead.png" id="2_2741q"]
+[ext_resource type="Texture2D" uid="uid://1sl7oxc3lx4a" path="res://Sprites/ped-man/ped-man-idle.png" id="3_6236v"]
+[ext_resource type="Texture2D" uid="uid://cen51t12qddyn" path="res://Sprites/ped-man/ped-man-step-left.png" id="4_jicty"]
+[ext_resource type="Texture2D" uid="uid://i43s23m8l17y" path="res://Sprites/ped-man/ped-man-step-right.png" id="5_vwy1o"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ufy58"]
-size = Vector2(15.619, 6.73469)
+[sub_resource type="SpriteFrames" id="SpriteFrames_ewh6b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2741q")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6236v")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_jicty")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6236v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_vwy1o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6236v")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m3q4u"]
-size = Vector2(17.5794, 8.97959)
+size = Vector2(27.5, 14)
 
 [node name="Pedestrian" type="CharacterBody2D"]
-scale = Vector2(2.1, 4.9)
 collision_layer = 2
 script = ExtResource("1_rrmj4")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(10.4762, 3.46939)
-scale = Vector2(0.142411, 0.057398)
-texture = ExtResource("1_442mt")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(9.80952, 3.36735)
-shape = SubResource("RectangleShape2D_ufy58")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(9, 4)
+sprite_frames = SubResource("SpriteFrames_ewh6b")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="MovementTimer" type="Timer" parent="."]
 
 [node name="CarDetector" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CarDetector"]
-position = Vector2(10.0714, 3.06122)
+position = Vector2(9.5, 4)
 scale = Vector2(1.2, 1)
 shape = SubResource("RectangleShape2D_m3q4u")
 
