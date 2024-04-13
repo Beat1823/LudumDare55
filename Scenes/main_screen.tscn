@@ -20,6 +20,8 @@ point_count = 5
 script = ExtResource("1_3k6bo")
 pedestrian_scene = ExtResource("2_eihxn")
 
+[node name="Pentagram" parent="." instance=ExtResource("4_nvv3w")]
+
 [node name="Car" parent="." instance=ExtResource("3_636hp")]
 position = Vector2(221, 244)
 
@@ -34,8 +36,6 @@ curve = SubResource("Curve2D_fxmm3")
 
 [node name="PedestrianSpawnLocation" type="PathFollow2D" parent="PedestrianPath"]
 position = Vector2(56, 64)
-
-[node name="Pentagram" parent="." instance=ExtResource("4_nvv3w")]
 
 [node name="Blood" parent="." instance=ExtResource("4_icjts")]
 position = Vector2(352, 240)
