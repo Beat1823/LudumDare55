@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://cei1e8gtakjed"]
+[gd_scene load_steps=14 format=3 uid="uid://cei1e8gtakjed"]
 
 [ext_resource type="Script" path="res://Scenes/main_screen.gd" id="1_3k6bo"]
 [ext_resource type="PackedScene" uid="uid://digfx032tves5" path="res://Scenes/pedestrian.tscn" id="2_eihxn"]
 [ext_resource type="PackedScene" uid="uid://cqrmn6a1pt71l" path="res://Scenes/DemonCar/car.tscn" id="3_636hp"]
 [ext_resource type="PackedScene" uid="uid://dm5e0td7uarfc" path="res://Scenes/blood.tscn" id="4_icjts"]
-[ext_resource type="PackedScene" uid="uid://dw8elcqe870ht" path="res://Scenes/pentagram.tscn" id="4_nvv3w"]
+[ext_resource type="PackedScene" path="res://Scenes/pentagram.tscn" id="4_nvv3w"]
+[ext_resource type="Script" path="res://Scenes/PlayerCamera.gd" id="6_1oiiw"]
 [ext_resource type="Texture2D" uid="uid://ceub26rlc45gc" path="res://Sprites/map.png" id="6_spaal"]
 [ext_resource type="Script" path="res://scripts/MusicPlayer.gd" id="7_alry0"]
 [ext_resource type="AudioStream" uid="uid://s7lhyp23iqcn" path="res://music/music_1_loop.ogg" id="8_ie8hg"]
@@ -35,7 +36,10 @@ points = PackedVector2Array(625.59, 507.929, 776.625, 152.333, 386.166, 366.508,
 [node name="Car" parent="." instance=ExtResource("3_636hp")]
 position = Vector2(221, 244)
 
-[node name="PlayerCamera" type="Camera2D" parent="Car"]
+[node name="PlayerCamera" type="Camera2D" parent="Car" node_paths=PackedStringArray("Car")]
+zoom = Vector2(2, 2)
+script = ExtResource("6_1oiiw")
+Car = NodePath("..")
 
 [node name="PedestrianTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -49,7 +53,7 @@ curve = SubResource("Curve2D_fxmm3")
 [node name="PedestrianSpawnLocation" type="PathFollow2D" parent="PedestrianPath"]
 position = Vector2(56, 64)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Map" type="Sprite2D" parent="."]
 z_index = -6
 texture_filter = 1
 position = Vector2(735, 260)
@@ -59,8 +63,8 @@ texture = ExtResource("6_spaal")
 [node name="MusicPlayer" type="Node" parent="." node_paths=PackedStringArray("MusicPlayer")]
 script = ExtResource("7_alry0")
 MusicFiles = Array[AudioStreamOggVorbis]([ExtResource("8_ie8hg"), ExtResource("9_6vo6c"), ExtResource("10_rvfw5")])
-MusicPlayer = NodePath("AudioStreamPlayer2D")
+MusicPlayer = NodePath("AudioStreamPlayer")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MusicPlayer"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MusicPlayer"]
 
 [connection signal="timeout" from="PedestrianTimer" to="." method="_on_pedestrian_timer_timeout"]

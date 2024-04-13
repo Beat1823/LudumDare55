@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var wheelBase = 70
 @export var steeringAngle = 20
 @export var steeringRate = 60
-@export var engine_power = 2000
+@export var engine_power = 1000
 @export var friction = -0.9
 @export var drag = -0.001
 @export var breaking = -450
