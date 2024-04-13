@@ -41,15 +41,6 @@ curve = SubResource("Curve2D_fxmm3")
 [node name="PedestrianSpawnLocation" type="PathFollow2D" parent="PedestrianPath"]
 position = Vector2(56, 64)
 
-[node name="Blood" parent="." instance=ExtResource("4_icjts")]
-position = Vector2(352, 240)
-
-[node name="Blood2" parent="." instance=ExtResource("4_icjts")]
-position = Vector2(336, 272)
-
-[node name="Blood3" parent="." instance=ExtResource("4_icjts")]
-position = Vector2(328, 304)
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -6
 texture_filter = 1
