@@ -1,11 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://cei1e8gtakjed"]
+[gd_scene load_steps=13 format=3 uid="uid://cei1e8gtakjed"]
 
 [ext_resource type="Script" path="res://Scenes/main_screen.gd" id="1_3k6bo"]
 [ext_resource type="PackedScene" uid="uid://digfx032tves5" path="res://Scenes/pedestrian.tscn" id="2_eihxn"]
 [ext_resource type="PackedScene" uid="uid://cqrmn6a1pt71l" path="res://Scenes/DemonCar/car.tscn" id="3_636hp"]
 [ext_resource type="PackedScene" uid="uid://dm5e0td7uarfc" path="res://Scenes/blood.tscn" id="4_icjts"]
-[ext_resource type="PackedScene" path="res://Scenes/pentagram.tscn" id="4_nvv3w"]
+[ext_resource type="PackedScene" uid="uid://dw8elcqe870ht" path="res://Scenes/pentagram.tscn" id="4_nvv3w"]
 [ext_resource type="Texture2D" uid="uid://ceub26rlc45gc" path="res://Sprites/map.png" id="6_spaal"]
+[ext_resource type="Script" path="res://scripts/MusicPlayer.gd" id="7_alry0"]
+[ext_resource type="AudioStream" uid="uid://s7lhyp23iqcn" path="res://music/music_1_loop.ogg" id="8_ie8hg"]
+[ext_resource type="AudioStream" uid="uid://b16p3s7pvhpe0" path="res://music/music_2_loop.ogg" id="9_6vo6c"]
+[ext_resource type="AudioStream" uid="uid://b0o6gn2h751my" path="res://music/music_3_loop.ogg" id="10_rvfw5"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_757d1"]
 outlines = Array[PackedVector2Array]([PackedVector2Array(64, 64, 1088, 64, 1088, 576, 64, 576)])
@@ -51,5 +55,12 @@ texture_filter = 1
 position = Vector2(735, 260)
 scale = Vector2(2, 2)
 texture = ExtResource("6_spaal")
+
+[node name="MusicPlayer" type="Node" parent="." node_paths=PackedStringArray("MusicPlayer")]
+script = ExtResource("7_alry0")
+MusicFiles = Array[AudioStreamOggVorbis]([ExtResource("8_ie8hg"), ExtResource("9_6vo6c"), ExtResource("10_rvfw5")])
+MusicPlayer = NodePath("AudioStreamPlayer2D")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MusicPlayer"]
 
 [connection signal="timeout" from="PedestrianTimer" to="." method="_on_pedestrian_timer_timeout"]
