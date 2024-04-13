@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cei1e8gtakjed"]
+[gd_scene load_steps=9 format=3 uid="uid://cei1e8gtakjed"]
 
 [ext_resource type="Script" path="res://Scenes/main_screen.gd" id="1_3k6bo"]
 [ext_resource type="PackedScene" uid="uid://digfx032tves5" path="res://Scenes/pedestrian.tscn" id="2_eihxn"]
 [ext_resource type="PackedScene" uid="uid://cqrmn6a1pt71l" path="res://Scenes/DemonCar/car.tscn" id="3_636hp"]
 [ext_resource type="PackedScene" path="res://Scenes/blood.tscn" id="4_icjts"]
 [ext_resource type="PackedScene" path="res://Scenes/pentagram.tscn" id="4_nvv3w"]
+[ext_resource type="Texture2D" uid="uid://ceub26rlc45gc" path="res://Sprites/map.png" id="6_spaal"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_757d1"]
 outlines = Array[PackedVector2Array]([PackedVector2Array(64, 64, 1088, 64, 1088, 576, 64, 576)])
@@ -48,5 +49,12 @@ position = Vector2(336, 272)
 
 [node name="Blood3" parent="." instance=ExtResource("4_icjts")]
 position = Vector2(328, 304)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -6
+texture_filter = 1
+position = Vector2(652, 264)
+scale = Vector2(2, 2)
+texture = ExtResource("6_spaal")
 
 [connection signal="timeout" from="PedestrianTimer" to="." method="_on_pedestrian_timer_timeout"]
