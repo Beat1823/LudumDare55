@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/main_screen.gd" id="1_3k6bo"]
 [ext_resource type="PackedScene" uid="uid://digfx032tves5" path="res://Scenes/pedestrian.tscn" id="2_eihxn"]
-[ext_resource type="PackedScene" uid="uid://cqrmn6a1pt71l" path="res://car.tscn" id="3_636hp"]
+[ext_resource type="PackedScene" uid="uid://cqrmn6a1pt71l" path="res://Scenes/DemonCar/car.tscn" id="3_636hp"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_757d1"]
 outlines = Array[PackedVector2Array]([PackedVector2Array(64, 64, 1088, 64, 1088, 576, 64, 576)])
@@ -19,7 +19,7 @@ script = ExtResource("1_3k6bo")
 pedestrian_scene = ExtResource("2_eihxn")
 
 [node name="Car" parent="." instance=ExtResource("3_636hp")]
-position = Vector2(584, 344)
+position = Vector2(221, 244)
 
 [node name="PedestrianTimer" type="Timer" parent="."]
 wait_time = 3.0

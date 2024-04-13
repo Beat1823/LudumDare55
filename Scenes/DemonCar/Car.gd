@@ -3,7 +3,6 @@ extends CharacterBody2D
 @export var wheelBase = 70
 @export var steeringAngle = 15
 
-var charVelocity = Vector2.ZERO
 var steerDirection
 
 func _physics_process(delta):
@@ -15,7 +14,7 @@ func getInput():
 	var turn = 0
 	if Input.is_action_pressed("turnRight"):
 		turn += 1
-	if Input.is_action_pressed("turnLeft"):
+	if Input.is_action_pressed("turnLeft"):	
 		turn -= 1
 	steerDirection = turn * steeringAngle
 	velocity = Vector2.ZERO
@@ -34,8 +33,7 @@ func calcSteering(delta):
  
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
-
+	set_physics_process(true)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

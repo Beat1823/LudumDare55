@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqrmn6a1pt71l"]
+[gd_scene load_steps=5 format=3 uid="uid://cqrmn6a1pt71l"]
 
 [ext_resource type="Texture2D" uid="uid://bx5sow4qmk56p" path="res://Scenes/DemonCar/Sprites/BloodBuggy.png" id="1_61gt2"]
+[ext_resource type="Script" path="res://Scenes/DemonCar/Car.gd" id="1_ssejr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rjrpc"]
 radius = 14.785
@@ -17,12 +18,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Car" type="Area2D"]
-rotation = 1.5708
-scale = Vector2(3, 3)
+[node name="Car" type="CharacterBody2D"]
+rotation = -6.28319
+script = ExtResource("1_ssejr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_rjrpc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_y74uf")
