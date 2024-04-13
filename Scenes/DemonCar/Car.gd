@@ -2,11 +2,14 @@ extends CharacterBody2D
 
 @export var wheelBase = 70
 @export var steeringAngle = 20
-@export var engine_power = 800
+@export var engine_power = 1000
 @export var friction = -0.9
 @export var drag = -0.001
 @export var breaking = -450
 @export var maxReverseSpeed = 250
+@export var slipSpeed = 400
+@export var tractionFast = 0.1
+@export var tractionSlow = 1.0
 
 var acceleration
 var steerDirection
@@ -44,9 +47,12 @@ func calcSteering(delta):
 	rearWheel += velocity * delta
 	frontWheel += velocity.rotated(steerDirection) * delta
 	var newHeading = (frontWheel - rearWheel).normalized()
+	var traction = tractionSlow
+	if velocity.length() > slipSpeed:
+		traction = tractionFast
 	var dot = newHeading.dot(velocity.normalized())
 	if dot > 0:
-		velocity = newHeading * velocity.length()
+		velocity = velocity.lerp(newHeading * velocity.length(), traction)
 	if dot < 0:
 		velocity = -newHeading * min(velocity.length(), maxReverseSpeed)
 	rotation = newHeading.angle()
