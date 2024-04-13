@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8kownkbsyelm"]
+[gd_scene load_steps=5 format=3 uid="uid://b8kownkbsyelm"]
 
+[ext_resource type="Theme" uid="uid://c3i6pb5edn2lb" path="res://theme.tres" id="1_m37vv"]
 [ext_resource type="Script" path="res://UI/start_screen.gd" id="1_t31xt"]
 
 [sub_resource type="Gradient" id="Gradient_cf1i8"]
@@ -16,6 +17,7 @@ anchor_bottom = 1.0
 offset_right = 8.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_m37vv")
 script = ExtResource("1_t31xt")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -37,7 +39,7 @@ offset_top = -171.0
 offset_bottom = -59.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 128
 text = "Blood Drive"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -55,7 +57,7 @@ offset_right = 4.0
 offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 64
 text = "Play"
 metadata/_edit_use_anchors_ = true
 
