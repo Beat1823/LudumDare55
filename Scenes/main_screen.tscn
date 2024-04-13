@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cei1e8gtakjed"]
+[gd_scene load_steps=8 format=3 uid="uid://cei1e8gtakjed"]
 
 [ext_resource type="Script" path="res://Scenes/main_screen.gd" id="1_3k6bo"]
 [ext_resource type="PackedScene" uid="uid://digfx032tves5" path="res://Scenes/pedestrian.tscn" id="2_eihxn"]
 [ext_resource type="PackedScene" uid="uid://cqrmn6a1pt71l" path="res://Scenes/DemonCar/car.tscn" id="3_636hp"]
+[ext_resource type="PackedScene" path="res://Scenes/blood.tscn" id="4_icjts"]
+[ext_resource type="PackedScene" path="res://Scenes/pentagram.tscn" id="4_nvv3w"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_757d1"]
 outlines = Array[PackedVector2Array]([PackedVector2Array(64, 64, 1088, 64, 1088, 576, 64, 576)])
@@ -17,9 +19,14 @@ point_count = 5
 [node name="MainScreen" type="Node2D"]
 script = ExtResource("1_3k6bo")
 pedestrian_scene = ExtResource("2_eihxn")
+blood_scene = ExtResource("4_icjts")
+
+[node name="Pentagram" parent="." instance=ExtResource("4_nvv3w")]
 
 [node name="Car" parent="." instance=ExtResource("3_636hp")]
 position = Vector2(221, 244)
+
+[node name="PlayerCamera" type="Camera2D" parent="Car"]
 
 [node name="PedestrianTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -33,10 +40,13 @@ curve = SubResource("Curve2D_fxmm3")
 [node name="PedestrianSpawnLocation" type="PathFollow2D" parent="PedestrianPath"]
 position = Vector2(56, 64)
 
-[node name="Pentagram" type="Line2D" parent="."]
-points = PackedVector2Array(392, 176, 584, 512, 792, 160, 344, 432, 824, 440, 384, 184, 336, 288, 344, 440, 448, 504, 608, 520, 816, 448, 824, 376, 808, 200, 776, 152, 640, 128, 544, 136, 400, 168)
-closed = true
-default_color = Color(1, 0.517647, 1, 1)
+[node name="Blood" parent="." instance=ExtResource("4_icjts")]
+position = Vector2(352, 240)
+
+[node name="Blood2" parent="." instance=ExtResource("4_icjts")]
+position = Vector2(336, 272)
+
+[node name="Blood3" parent="." instance=ExtResource("4_icjts")]
+position = Vector2(328, 304)
 
 [connection signal="timeout" from="PedestrianTimer" to="." method="_on_pedestrian_timer_timeout"]
-[connection signal="draw" from="Pentagram" to="." method="_on_line_2d_draw"]

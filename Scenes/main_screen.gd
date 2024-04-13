@@ -1,8 +1,7 @@
 extends Node2D
 
 @export var pedestrian_scene: PackedScene
-
-var _allPoints: Array
+@export var blood_scene: PackedScene
 
 func _ready():
 	$PedestrianTimer.start()
@@ -19,24 +18,13 @@ func _on_pedestrian_timer_timeout():
 #
 	# Spawn the mob by adding it to the Main scene.
 	add_child(pedestrian)
-
-
-func _on_line_2d_draw():
-	var pentagram: Line2D = get_node("Pentagram") 
-	var points: PackedVector2Array = pentagram.points
 	
-	_allPoints.clear()
-	
-	for i in range(points.size() - 1):
-		var pointA: Vector2 = points[i]
-		var pointB: Vector2 = points[i + 1]
+func _input(event):
+	if Input.is_action_pressed("click"):
+		var blood = blood_scene.instantiate()
+		blood.position = event.position
+		blood.name = "Blood"
+		add_child(blood, true)
 		
-		var m = (pointA.y - pointB.y) / (pointA.x - pointB.x)
-		var c = pointA.y - pointA.x * m
-
-		for x in range(pointA.x, pointB.x):
-			var y = m*x + c
-			_allPoints.append(Vector2(x, y))
-			
-	print(_allPoints.size())
+	
 	
