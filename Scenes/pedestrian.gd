@@ -28,3 +28,4 @@ func _physics_process(_delta):
 func _on_car_detector_body_entered(body):
 	get_node("CollisionShape2D").disabled = true
 	queue_free()
+	PlayerData.pedestrian_count -= 1
