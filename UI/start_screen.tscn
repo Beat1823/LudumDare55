@@ -23,8 +23,8 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.993
 anchor_bottom = 0.975
-offset_right = 0.0639648
-offset_bottom = 0.200012
+offset_right = 32.12
+offset_bottom = 48.2
 texture = SubResource("GradientTexture2D_qpdak")
 
 [node name="Label" type="Label" parent="."]
