@@ -26,12 +26,11 @@ point_count = 5
 script = ExtResource("1_3k6bo")
 pedestrian_scene = ExtResource("2_eihxn")
 blood_scene = ExtResource("4_icjts")
-metadata/_edit_vertical_guides_ = [808.0]
-metadata/_edit_horizontal_guides_ = [936.0]
+metadata/_edit_vertical_guides_ = [805.0, 837.0]
+metadata/_edit_horizontal_guides_ = [628.0, 620.0]
 
 [node name="Pentagram" parent="." instance=ExtResource("4_nvv3w")]
 z_index = -4
-position = Vector2(33, 9)
 points = PackedVector2Array(808, 616, 1112, -136, 386.166, 366.508, 1192, 400, 472, -144)
 
 [node name="Car" parent="." instance=ExtResource("3_636hp")]

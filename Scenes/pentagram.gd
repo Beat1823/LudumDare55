@@ -44,7 +44,7 @@ func is_point_covered(point: Vector2, bloodAreas: Array) -> bool:
 	for bloodArea in bloodAreas:
 		# print("point %s, bloodArea.position %s, bloodArea.radius %s" % [point, bloodArea.position, bloodArea.radius])
 		if Geometry2D.is_point_in_circle(point, bloodArea.position, bloodArea.radius):
-			print("point %s" % point)
+			# print("point %s" % point)
 			return true
 	return false	
 	
