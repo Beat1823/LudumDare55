@@ -3,12 +3,19 @@ extends Node2D
 @export var pedestrian_scene: PackedScene
 @export var blood_scene: PackedScene
 
+@export var PEDESTRIAN_LIMIT = 5 
+
+var pedestrian_count = 0
+
 func _ready():
 	$PedestrianTimer.start()
 	var Car = get_node("Car")
 	Car.BloodTrackPlaced.connect(placeBlood)
 
 func _on_pedestrian_timer_timeout():
+	if pedestrian_count >= PEDESTRIAN_LIMIT:
+		return
+	
 	var pedestrian = pedestrian_scene.instantiate()
 	
 	# Choose a random location on Path2D.
@@ -20,9 +27,12 @@ func _on_pedestrian_timer_timeout():
 #
 	# Spawn the mob by adding it to the Main scene.
 	add_child(pedestrian)
+	pedestrian_count += 1
 
 func placeBlood(pos):
 	var blood = blood_scene.instantiate()
 	blood.position = pos
 	blood.name = "Blood"
 	add_child(blood, true)
+	
+	
