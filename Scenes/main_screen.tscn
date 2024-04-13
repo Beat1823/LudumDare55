@@ -19,6 +19,7 @@ point_count = 5
 [node name="MainScreen" type="Node2D"]
 script = ExtResource("1_3k6bo")
 pedestrian_scene = ExtResource("2_eihxn")
+blood_scene = ExtResource("4_icjts")
 
 [node name="Pentagram" parent="." instance=ExtResource("4_nvv3w")]
 

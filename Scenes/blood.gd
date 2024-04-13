@@ -7,6 +7,5 @@ class_name Blood
 func _ready():
 	var collisionShape: CollisionShape2D = get_node("CollisionShape2D")
 	radius = collisionShape.shape.radius
-	print(radius)
 
 
