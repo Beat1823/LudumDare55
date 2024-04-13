@@ -23,6 +23,10 @@ pedestrian_scene = ExtResource("2_eihxn")
 blood_scene = ExtResource("4_icjts")
 
 [node name="Pentagram" parent="." instance=ExtResource("4_nvv3w")]
+z_index = -4
+position = Vector2(-1215.16, -919.049)
+scale = Vector2(3.22441, 3.6699)
+points = PackedVector2Array(625.59, 507.929, 776.625, 152.333, 386.166, 366.508, 846.716, 367.325, 479.827, 140.889)
 
 [node name="Car" parent="." instance=ExtResource("3_636hp")]
 position = Vector2(221, 244)
@@ -44,7 +48,7 @@ position = Vector2(56, 64)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -6
 texture_filter = 1
-position = Vector2(652, 264)
+position = Vector2(735, 260)
 scale = Vector2(2, 2)
 texture = ExtResource("6_spaal")
 
