@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nr0tpr38q0qh"
-path="res://.godot/imported/YellowBuggy_0.png-39b53d58794a21a930ea3f062262a64b.ctex"
+uid="uid://bx5sow4qmk56p"
+path="res://.godot/imported/BloodBuggy.png-1a6fd59fd5767e51a77e939d919d7252.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/YellowBuggy_0.png"
-dest_files=["res://.godot/imported/YellowBuggy_0.png-39b53d58794a21a930ea3f062262a64b.ctex"]
+source_file="res://Scenes/DemonCar/Sprites/BloodBuggy.png"
+dest_files=["res://.godot/imported/BloodBuggy.png-1a6fd59fd5767e51a77e939d919d7252.ctex"]
 
 [params]
 
