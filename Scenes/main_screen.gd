@@ -28,9 +28,17 @@ func _on_pedestrian_timer_timeout():
 	PlayerData.pedestrian_count += 1
 
 func placeBlood(pos):
-	var blood = blood_scene.instantiate()
-	blood.position = pos
-	blood.name = "Blood"
-	add_child(blood, true)
+	var canPlace = true
+	for child in get_children():
+		if (child.name.contains("Blood")):
+			if Geometry2D.is_point_in_circle(pos, child.position, child.radius):
+				canPlace = false
+				break
+				
+	if canPlace:
+		var blood = blood_scene.instantiate()
+		blood.position = pos
+		blood.name = "Blood"
+		add_child(blood, true)
 	
 	

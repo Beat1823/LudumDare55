@@ -68,4 +68,4 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_pressed("BloodTracks"):
-		BloodTrackPlaced.emit(position)
+		BloodTrackPlaced.emit(position - transform.x * wheelBase/2.0)
