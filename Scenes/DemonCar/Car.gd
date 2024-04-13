@@ -5,6 +5,8 @@ extends CharacterBody2D
 @export var engine_power = 800
 @export var friction = -0.9
 @export var drag = -0.001
+@export var breaking = -450
+@export var maxReverseSpeed = 250
 
 var acceleration
 var steerDirection
@@ -34,7 +36,7 @@ func getInput():
 	if Input.is_action_pressed("accelerate"):
 		acceleration = transform.x * engine_power
 	if Input.is_action_pressed("brake"):
-		acceleration = transform.x * -engine_power
+		acceleration = transform.x * breaking
 	
 func calcSteering(delta):
 	var rearWheel = position - transform.x * wheelBase/2.0
@@ -42,7 +44,11 @@ func calcSteering(delta):
 	rearWheel += velocity * delta
 	frontWheel += velocity.rotated(steerDirection) * delta
 	var newHeading = (frontWheel - rearWheel).normalized()
-	velocity = newHeading * velocity.length()
+	var dot = newHeading.dot(velocity.normalized())
+	if dot > 0:
+		velocity = newHeading * velocity.length()
+	if dot < 0:
+		velocity = -newHeading * min(velocity.length(), maxReverseSpeed)
 	rotation = newHeading.angle()
 	
  
