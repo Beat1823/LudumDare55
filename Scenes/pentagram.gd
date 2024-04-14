@@ -32,7 +32,7 @@ func _process(delta):
 	material.set("shader_parameter/blood_num", bloodCenters.size())
 	
 	if bloodAreas.size() > 0:
-		var scale = camera.zoom.length()
+		var scale = CameraManager.mainCamera.zoom.length()
 		material.set("shader_parameter/blood_radius", scale * bloodAreas[0].radius)
 
 func _on_draw():
