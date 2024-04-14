@@ -44,8 +44,8 @@ script = ExtResource("1_3k6bo")
 pedestrian_scene = ExtResource("2_eihxn")
 police_car_scene = ExtResource("3_bxp2i")
 blood_scene = ExtResource("4_icjts")
-metadata/_edit_vertical_guides_ = [-1394.0, 2537.0]
-metadata/_edit_horizontal_guides_ = [-1602.0, 2090.0]
+metadata/_edit_vertical_guides_ = [-1194.0, 2703.0]
+metadata/_edit_horizontal_guides_ = [-1606.0, 2019.0]
 
 [node name="Pentagram" parent="." instance=ExtResource("4_nvv3w")]
 z_index = 2
@@ -95,6 +95,11 @@ visible = false
 material = SubResource("ShaderMaterial_83la1")
 offset_right = 1184.0
 offset_bottom = 652.0
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(0.356863, 0.356863, 0.521569, 1)
+energy = 0.78
+blend_mode = 2
 
 [connection signal="onCovered" from="Pentagram" to="." method="_on_pentagram_on_covered"]
 [connection signal="progressUpdate" from="Pentagram" to="GameUi" method="_on_pentagram_progress_update"]
