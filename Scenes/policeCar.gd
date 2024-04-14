@@ -1,5 +1,18 @@
 extends CharacterBody2D
 
+@export var wheelBase = 70
+@export var steeringAngle = 20
+@export var steeringRate = 60
+@export var engine_power = 500
+@export var friction = -0.9
+@export var drag = -0.001
+@export var breaking = -450
+@export var maxReverseSpeed = 250
+@export var slipSpeed = 400
+@export var tractionFast = 0.1
+@export var tractionSlow = 1.0
+@export var offsetScale = 300.0
+
 @export var move_speed : float = 100
 @export var walk_time : float = 1
 var move_direction : Vector2 = Vector2.ZERO
@@ -10,8 +23,10 @@ var move_direction : Vector2 = Vector2.ZERO
 var is_alive:bool = true
 var is_moving:bool = true
 var is_bouncing:bool = false
+var acceleration
+var steerDirection
 
-var target:Vector2 = Vector2(0.0, 0.0)
+var targetOffset:Vector2 = Vector2(0.0, 0.0)
 
 signal CarHit
 
@@ -24,20 +39,15 @@ func _on_movement_timer_timeout():
 	timer.start(walk_time)
 	
 func select_new_direction():
-	target = car.position
-	var dir = position.direction_to(target)
-	if is_moving:
-		move_direction = dir
-	if is_bouncing:
-		move_direction = -dir
+	targetOffset = Vector2(randf_range(0.0, offsetScale), randf_range(0.0, offsetScale))
 	
-func _physics_process(_delta):
-	if is_alive and is_moving:
-		
-		velocity = move_direction * move_speed 
-		
-		var angle_to_car = move_direction.angle()
-		rotation = move_toward(rotation, angle_to_car, _delta)
+func _physics_process(delta):
+	if is_alive and is_moving:	
+		acceleration = Vector2.ZERO
+		getInput(delta)
+		applyFriction()
+		calcSteering(delta)
+		velocity += acceleration * delta
 		
 		move_and_slide()
 
@@ -49,7 +59,6 @@ func unalive():
 	is_alive = false
 	$AnimatedSprite2D.play("dead")
 	SoundManager.playSound3D(load("res://sound/policecar_destroy.ogg"), position)
-
 
 func _on_car_detactor_body_entered(body):
 	if is_alive:
@@ -70,3 +79,41 @@ func _on_bounce_timer_timeout():
 	is_moving = false
 	is_bouncing = false
 	$IdleTimer.start()
+	
+
+func getInput(delta):
+	if !is_alive:
+		return
+		
+	var direction = (car.position + targetOffset - position).normalized()
+	var forward = global_transform.basis_xform(Vector2.RIGHT)
+	var turnAngle = min(acos(forward.dot(direction)), deg_to_rad(steeringAngle))
+	
+	if direction.cross(forward) > 0:
+		turnAngle = -turnAngle
+	
+	steerDirection = turnAngle
+	acceleration = transform.x * engine_power
+
+func calcSteering(delta):
+	var rearWheel = position - transform.x * wheelBase/2.0
+	var frontWheel = position + transform.x * wheelBase/2.0
+	rearWheel += velocity * delta
+	frontWheel += velocity.rotated(steerDirection) * delta
+	var newHeading = (frontWheel - rearWheel).normalized()
+	var traction = tractionSlow
+	if velocity.length() > slipSpeed:
+		traction = tractionFast
+	var dot = newHeading.dot(velocity.normalized())
+	if dot > 0:
+		velocity = velocity.lerp(newHeading * velocity.length(), traction)
+	if dot < 0:
+		velocity = -newHeading * min(velocity.length(), maxReverseSpeed)
+	rotation = newHeading.angle()
+	
+func applyFriction():
+	if velocity.length() < 5 : 
+		velocity = Vector2.ZERO
+	var frictionForce = velocity * friction
+	var dragForce = velocity * velocity.length() * drag
+	acceleration += dragForce + frictionForce

@@ -6,10 +6,10 @@ extends Node2D
 @export var police_car_scene: PackedScene
 @export var blood_scene: PackedScene
 
-@export var PEDESTRIAN_LIMIT = 5
-@export var POLICE_CAR_LIMIT = 2 
+@export var PEDESTRIAN_LIMIT = 500
+@export var POLICE_CAR_LIMIT = 200 
 
-var placementCooldownMs = 5000
+var placementCooldownMs = 500
 var lastTriggerTime = 0
 
 func _ready():
