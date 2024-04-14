@@ -40,6 +40,7 @@ func _ready():
 	timer.start(walk_time)
 	$SirenSound.stream = siren_sounds.pick_random()
 	$SirenSound.play()
+	$AnimationPlayer.speed_scale = randf_range(0.8, 1.2)
 	
 func _process(delta):
 	var delta_vector:Vector2 = car.velocity - velocity
@@ -72,6 +73,9 @@ func unalive():
 	$AnimatedSprite2D.play("dead")
 	$SirenSound.stop()
 	SoundManager.playSound3D(load("res://sound/policecar_destroy.ogg"), position)
+	$Hoodlights.visible = false
+	$Headlights.visible = false
+	
 
 func _on_car_detactor_body_entered(body):
 	if is_alive:
