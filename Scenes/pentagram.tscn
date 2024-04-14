@@ -1,10 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://dw8elcqe870ht"]
+[gd_scene load_steps=7 format=3 uid="uid://dw8elcqe870ht"]
 
 [ext_resource type="Script" path="res://Scenes/pentagram.gd" id="1_kd8s1"]
+[ext_resource type="AudioStream" uid="uid://dskbvhxhf0or3" path="res://sound/pentagram10.ogg" id="2_slxid"]
+[ext_resource type="AudioStream" uid="uid://bjf6ybdocg5k1" path="res://sound/pentagram25.ogg" id="3_ik4jm"]
+[ext_resource type="AudioStream" uid="uid://dss2kcljb61gx" path="res://sound/pentagram50.ogg" id="4_xojif"]
+[ext_resource type="AudioStream" uid="uid://c8hcksb730lnp" path="res://sound/pentagram75.ogg" id="5_65d4f"]
+[ext_resource type="AudioStream" uid="uid://c1lqf66ti3xrs" path="res://sound/pentagram100.ogg" id="6_16d51"]
 
 [node name="Pentagram" type="Line2D"]
 closed = true
 default_color = Color(1, 0.517647, 1, 1)
 script = ExtResource("1_kd8s1")
+ProgressSoundMap = {
+0.1: ExtResource("2_slxid"),
+0.25: ExtResource("3_ik4jm"),
+0.5: ExtResource("4_xojif"),
+0.75: ExtResource("5_65d4f"),
+1.0: ExtResource("6_16d51")
+}
 
 [connection signal="draw" from="." to="." method="_on_draw"]

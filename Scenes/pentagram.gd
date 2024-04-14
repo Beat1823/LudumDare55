@@ -7,6 +7,9 @@ var _allPoints: Array
 signal onCovered
 signal progressUpdate(progress)
 
+@export var ProgressSoundMap: Dictionary
+var SoundsPlayed: Array[AudioStreamOggVorbis]
+
 var covered:bool = false
 var coveredAreas:Array
 
@@ -39,7 +42,7 @@ func checkPoint(pos, radius):
 		if Geometry2D.is_point_in_circle(point, pos, radius):
 			if !coveredAreas.has(point):
 				coveredAreas.append(point)
-				updateCoveredStatus()
+	updateCoveredStatus()
 
 func updateCoveredStatus():
 	if is_covered_in_blood():
@@ -68,5 +71,15 @@ func is_covered_in_blood() -> bool:
 	var progress = float(coveredAreas.size()) / _allPoints.size()
 	var covered = progress >= 1
 	
+	SoundProgress(progress)
 	progressUpdate.emit(progress)
 	return covered
+
+func SoundProgress(progress):
+	var keys = ProgressSoundMap.keys()
+	for entry in keys:
+		if progress >= entry:
+			if !SoundsPlayed.has(ProgressSoundMap[entry]):
+				SoundsPlayed.append(ProgressSoundMap[entry])
+				SoundManager.playSound2D(ProgressSoundMap[entry], 0, -10, 0, 0)
+				return
