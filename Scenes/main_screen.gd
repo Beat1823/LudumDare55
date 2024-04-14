@@ -1,8 +1,6 @@
 extends Node2D
 
-@export var maxBloodLevel = 100.0
 @export var startingBloodlevel = 50.0
-var currentBloodLevel
 
 @export var pedestrian_scene: PackedScene
 @export var blood_scene: PackedScene
@@ -13,7 +11,7 @@ func _ready():
 	$PedestrianTimer.start()
 	var Car = get_node("Car")
 	Car.BloodTrackPlaced.connect(placeBlood)
-	currentBloodLevel = startingBloodlevel
+	PlayerData.currentBloodLevel = startingBloodlevel
 
 func _on_pedestrian_timer_timeout():
 	if PlayerData.pedestrian_count >= PEDESTRIAN_LIMIT:
@@ -34,7 +32,7 @@ func _on_pedestrian_timer_timeout():
 	PlayerData.pedestrian_count += 1
 
 func FillBlood():
-	currentBloodLevel += 10.0
+	PlayerData.currentBloodLevel += 10.0
 
 func placeBlood(pos):
 	var canPlace = true
@@ -44,12 +42,12 @@ func placeBlood(pos):
 				canPlace = false
 				break
 				
-	if canPlace && currentBloodLevel > 0:
+	if canPlace && PlayerData.currentBloodLevel > 0:
 		var blood = blood_scene.instantiate()
 		blood.position = pos
 		blood.name = "Blood"
 		add_child(blood, true)
-		currentBloodLevel -= 1
-		var bloodToPitch:float = 1.25 - inverse_lerp(0, maxBloodLevel, currentBloodLevel) / 2
+		PlayerData.currentBloodLevel -= 1
+		var bloodToPitch:float = 1.25 - inverse_lerp(0, PlayerData.maxBloodLevel, PlayerData.currentBloodLevel) / 2
 		SoundManager.playRandomSound3D(blood.placedSounds, pos, 0, bloodToPitch, 0, 0)
 	
