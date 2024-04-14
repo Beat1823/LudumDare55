@@ -62,8 +62,10 @@ func FillBlood():
 	PlayerData.currentBloodLevel += 10.0
 	
 func HitCar():
+	SoundManager.playSound2D(load("res://sound/take_damage.ogg"), -3)
 	if PlayerData.currentBloodLevel > 0.0:
 		PlayerData.currentBloodLevel -= 10.0
+		SoundManager.playSound2D(load("res://sound/vox/vox_oof.ogg"), -6)
 	if PlayerData.currentBloodLevel <= 0.0:
 		PlayerData.currentBloodLevel = 0.0
 		var Car = get_node("Car")

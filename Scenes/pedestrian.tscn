@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://digfx032tves5"]
+[gd_scene load_steps=19 format=3 uid="uid://digfx032tves5"]
 
 [ext_resource type="Script" path="res://Scenes/pedestrian.gd" id="1_rrmj4"]
 [ext_resource type="AudioStream" uid="uid://c3sdanksc8wy1" path="res://sound/ped_hit_1.ogg" id="2_hlv7l"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://buse8uyvhdvwe" path="res://sound/vox/vox_godie.ogg" id="9_ha4pc"]
 [ext_resource type="AudioStream" uid="uid://1quwjrbyml38" path="res://sound/vox/vox_manslaughter.ogg" id="10_x5x2y"]
 [ext_resource type="AudioStream" uid="uid://bjl5id8mqyto5" path="res://sound/vox/vox_megadeath.ogg" id="11_m2cll"]
+[ext_resource type="AudioStream" uid="uid://cltw4nus6rtfd" path="res://sound/vox/vox_insurance.ogg" id="12_tu4mp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2kvha"]
 animations = [{
@@ -60,7 +61,7 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_rrmj4")
 deathSounds = Array[AudioStreamOggVorbis]([ExtResource("2_hlv7l"), ExtResource("3_0d8q6"), ExtResource("4_bfc58"), ExtResource("5_s7got")])
-killVoices = Array[AudioStreamOggVorbis]([ExtResource("6_5h2d7"), ExtResource("7_2xq6o"), ExtResource("8_w83gk"), ExtResource("9_ha4pc"), ExtResource("10_x5x2y"), ExtResource("11_m2cll")])
+killVoices = Array[AudioStreamOggVorbis]([ExtResource("6_5h2d7"), ExtResource("7_2xq6o"), ExtResource("8_w83gk"), ExtResource("9_ha4pc"), ExtResource("10_x5x2y"), ExtResource("11_m2cll"), ExtResource("12_tu4mp")])
 chanceToPlayKillSound = 0.2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
