@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cei1e8gtakjed"]
+[gd_scene load_steps=17 format=3 uid="uid://cei1e8gtakjed"]
 
 [ext_resource type="Script" path="res://Scenes/main_screen.gd" id="1_3k6bo"]
 [ext_resource type="PackedScene" uid="uid://digfx032tves5" path="res://Scenes/pedestrian.tscn" id="2_eihxn"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://dm5e0td7uarfc" path="res://Scenes/blood.tscn" id="4_icjts"]
 [ext_resource type="PackedScene" uid="uid://dw8elcqe870ht" path="res://Scenes/pentagram.tscn" id="4_nvv3w"]
 [ext_resource type="Shader" path="res://Scenes/pentagram.gdshader" id="5_lh6vx"]
-[ext_resource type="Script" path="res://Scenes/PlayerCamera.gd" id="6_1oiiw"]
 [ext_resource type="Texture2D" uid="uid://ceub26rlc45gc" path="res://Sprites/map.png" id="6_spaal"]
 [ext_resource type="Script" path="res://scripts/MusicPlayer.gd" id="7_alry0"]
 [ext_resource type="AudioStream" uid="uid://s7lhyp23iqcn" path="res://music/music_1_loop.ogg" id="8_ie8hg"]
@@ -41,24 +40,14 @@ blood_scene = ExtResource("4_icjts")
 metadata/_edit_vertical_guides_ = [-1394.0, 2537.0]
 metadata/_edit_horizontal_guides_ = [-1602.0, 2090.0]
 
-[node name="Pentagram" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("4_nvv3w")]
+[node name="Pentagram" parent="." instance=ExtResource("4_nvv3w")]
 z_index = 2
 material = SubResource("ShaderMaterial_rpe0b")
 position = Vector2(-29, -15)
 points = PackedVector2Array(790, 618, 964.008, 230.085, 1073, -75, 391, 404, 1193, 408, 535, -70)
-camera = NodePath("../Car/PlayerCamera")
 
 [node name="Car" parent="." instance=ExtResource("3_636hp")]
 position = Vector2(221, 244)
-
-[node name="PlayerCamera" type="Camera2D" parent="Car" node_paths=PackedStringArray("Car")]
-zoom = Vector2(2, 2)
-limit_left = -1395
-limit_top = -1602
-limit_right = 2537
-limit_bottom = 2090
-script = ExtResource("6_1oiiw")
-Car = NodePath("..")
 
 [node name="PedestrianTimer" type="Timer" parent="."]
 wait_time = 3.0

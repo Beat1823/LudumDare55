@@ -20,6 +20,11 @@ func _ready():
 	$PoliceTimer.start()
 	var Car = get_node("Car")
 	Car.BloodTrackPlaced.connect(placeBlood)
+	
+	var NewCamera = PlayerCamera.new()
+	Car.add_child(NewCamera)
+	CameraManager.mainCamera = NewCamera
+	
 	PlayerData.currentBloodLevel = startingBloodlevel
 
 func _on_pedestrian_timer_timeout():
@@ -63,6 +68,7 @@ func FillBlood():
 	
 func HitCar():
 	SoundManager.playSound2D(load("res://sound/take_damage.ogg"), -3)
+	CameraManager.MidShake()
 	if PlayerData.currentBloodLevel > 0.0:
 		PlayerData.currentBloodLevel -= 10.0
 		SoundManager.playSound2D(load("res://sound/vox/vox_oof.ogg"), -6)

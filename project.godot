@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 PlayerData="*res://Autoloads/player_data.tscn"
 SoundManager="*res://Scenes/SoundManager.tscn"
+CameraManager="*res://scripts/cameraManager.gd"
 
 [dotnet]
 

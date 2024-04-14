@@ -47,4 +47,5 @@ func unalive():
 
 func _on_car_detector_body_entered(body):
 	if is_alive:
+		CameraManager.SmallShake()
 		unalive()
