@@ -56,10 +56,11 @@ func _on_car_detactor_body_entered(body):
 		unalive()
 
 func _on_front_detector_body_entered(body):
-	CarHit.emit()
-	is_bouncing = true
-	select_new_direction()
-	$BounceTimer.start()
+	if is_alive:
+		CarHit.emit()
+		is_bouncing = true
+		select_new_direction()
+		$BounceTimer.start()
 
 func _on_idle_timer_timeout():
 	is_moving = true
