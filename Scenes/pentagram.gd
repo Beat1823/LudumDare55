@@ -1,7 +1,7 @@
 extends Line2D
 
 @export var camera: Camera2D
-
+@export var graceMultiplier = 1.25
 var _allPoints: Array
 
 signal onCovered
@@ -68,7 +68,7 @@ func is_covered_in_blood() -> bool:
 		var scale = camera.zoom.length()
 		material.set("shader_parameter/blood_radius", scale * bloodAreas[0].radius)
 	
-	var progress = float(coveredAreas.size()) / _allPoints.size()
+	var progress = float(coveredAreas.size()) / _allPoints.size() * graceMultiplier
 	var covered = progress >= 1
 	
 	SoundProgress(progress)
@@ -81,5 +81,5 @@ func SoundProgress(progress):
 		if progress >= entry:
 			if !SoundsPlayed.has(ProgressSoundMap[entry]):
 				SoundsPlayed.append(ProgressSoundMap[entry])
-				SoundManager.playSound2D(ProgressSoundMap[entry], 0, -10, 0, 0)
+				SoundManager.playSound2D(ProgressSoundMap[entry], -8, 0, 0, 0)
 				return

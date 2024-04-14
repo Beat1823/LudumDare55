@@ -16,6 +16,7 @@ func playSound3D(sound:AudioStream, pos, vol = 0, pitch = 1, randVol = 3, randPi
 	player.pitch_scale = pitch + randf_range(-randPitch, randPitch)
 	add_child(player)
 	player.position = pos
+	player.attenuation = 0.05
 	player.play()
 	player.connect("finished", player.queue_free)
 

@@ -88,7 +88,7 @@ MusicFiles = Array[AudioStreamOggVorbis]([ExtResource("8_ie8hg"), ExtResource("9
 MusicPlayer = NodePath("AudioStreamPlayer")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MusicPlayer"]
-volume_db = -15.0
+volume_db = -11.826
 
 [node name="GameUi" parent="." instance=ExtResource("14_kskml")]
 

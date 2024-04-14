@@ -18,4 +18,4 @@ func _on_button_pressed():
 	get_tree().change_scene_to_file("res://UI/start_screen.tscn")
 
 func _on_pentagram_progress_update(progress):
-	$CanvasLayer/PentagramPaintedText.text = "[center]Pentagram painted:\n[b]" + str(roundi(progress * 100)) + "%"
+	$CanvasLayer/PentagramPaintedText.text = "[center]Pentagram painted:\n[b]" + str(roundi(clampf(progress, 0, 1) * 100)) + "%"
