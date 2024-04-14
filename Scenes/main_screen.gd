@@ -76,6 +76,8 @@ func HitCar():
 		PlayerData.currentBloodLevel = 0.0
 		var Car = get_node("Car")
 		Car.die()
+		var gray = get_node("GrayscaleLayer")
+		gray.set_visible(true)
 
 func placeBlood(pos):
 	var canPlace = true

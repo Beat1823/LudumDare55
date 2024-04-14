@@ -1,7 +1,7 @@
 class_name PlayerCamera
 extends Camera2D
 
-@export var ZoomScaling: float = 1000
+@export var ZoomScaling: float = 500
 
 @export var decay = 0.8  # How quickly the shaking stops [0, 1].
 @export var max_offset = Vector2(100, 75)  # Maximum hor/ver shake in pixels.
