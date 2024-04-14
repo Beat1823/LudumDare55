@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cei1e8gtakjed"]
+[gd_scene load_steps=19 format=3 uid="uid://cei1e8gtakjed"]
 
 [ext_resource type="Script" path="res://Scenes/main_screen.gd" id="1_3k6bo"]
 [ext_resource type="PackedScene" uid="uid://digfx032tves5" path="res://Scenes/pedestrian.tscn" id="2_eihxn"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://s7lhyp23iqcn" path="res://music/music_1_loop.ogg" id="8_ie8hg"]
 [ext_resource type="AudioStream" uid="uid://b16p3s7pvhpe0" path="res://music/music_2_loop.ogg" id="9_6vo6c"]
 [ext_resource type="AudioStream" uid="uid://b0o6gn2h751my" path="res://music/music_3_loop.ogg" id="10_rvfw5"]
+[ext_resource type="Shader" path="res://Scenes/grayscale.gdshader" id="14_7lw7l"]
 [ext_resource type="PackedScene" uid="uid://cjlx8xho3o2gu" path="res://Scenes/GameUI.tscn" id="14_kskml"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rpe0b"]
@@ -31,6 +32,12 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 56, 64, 0, 0, 0, 0, 1088, 64, 0, 0, 0, 0, 1088, 576, 0, 0, 0, 0, 56, 568, 0, 0, 0, 0, 56, 64)
 }
 point_count = 5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_83la1"]
+shader = ExtResource("14_7lw7l")
+shader_parameter/brightness = 1.0
+shader_parameter/contrast = 1.0
+shader_parameter/saturation = 1.0
 
 [node name="MainScreen" type="Node2D"]
 script = ExtResource("1_3k6bo")
@@ -80,6 +87,14 @@ MusicPlayer = NodePath("AudioStreamPlayer")
 volume_db = -11.826
 
 [node name="GameUi" parent="." instance=ExtResource("14_kskml")]
+
+[node name="GrayscaleLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Grayscale" type="ColorRect" parent="GrayscaleLayer"]
+material = SubResource("ShaderMaterial_83la1")
+offset_right = 1184.0
+offset_bottom = 652.0
 
 [connection signal="onCovered" from="Pentagram" to="." method="_on_pentagram_on_covered"]
 [connection signal="progressUpdate" from="Pentagram" to="GameUi" method="_on_pentagram_progress_update"]
