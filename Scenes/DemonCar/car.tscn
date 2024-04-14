@@ -86,6 +86,7 @@ autoplay = true
 
 [node name="TireSkidSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_p3504")
+volume_db = -7.0
 
 [node name="WheelBL" type="AnimatedSprite2D" parent="."]
 z_index = -1

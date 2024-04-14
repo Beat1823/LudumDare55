@@ -76,7 +76,7 @@ func placeBlood(pos):
 		blood.position = pos
 		add_child(blood, true)
 		blood.onPlaced()
-		$Pentagram.checkPoint(pos, blood.radius)
+		$Pentagram.checkPoint(pos, blood.radius * 1.25)
 
 func _on_pentagram_on_covered():
 	$GameUi.showEndGameScreen(true)
