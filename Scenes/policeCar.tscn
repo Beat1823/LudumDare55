@@ -7,7 +7,7 @@
 size = Vector2(28, 31)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iivab"]
-size = Vector2(36, 23)
+size = Vector2(33.3867, 27.5378)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6fmb5"]
 atlas = ExtResource("2_2ks70")
@@ -21,17 +21,13 @@ region = Rect2(0, 0, 64, 64)
 atlas = ExtResource("2_2ks70")
 region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_n4y86"]
-atlas = ExtResource("2_2ks70")
-region = Rect2(128, 0, 64, 64)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_6wri2"]
 atlas = ExtResource("2_2ks70")
 region = Rect2(192, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_05tw6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4y86"]
 atlas = ExtResource("2_2ks70")
-region = Rect2(256, 0, 64, 64)
+region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1srf3"]
 animations = [{
@@ -51,13 +47,10 @@ animations = [{
 "texture": SubResource("AtlasTexture_58tom")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_n4y86")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_6wri2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_05tw6")
+"texture": SubResource("AtlasTexture_n4y86")
 }],
 "loop": true,
 "name": &"default",
@@ -75,20 +68,22 @@ script = ExtResource("1_iek1t")
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CarDetector"]
-position = Vector2(0, 6.5)
+position = Vector2(-14, 0)
 shape = SubResource("RectangleShape2D_t3u7x")
 
 [node name="FrontDetector" type="Area2D" parent="."]
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FrontDetector"]
-position = Vector2(0, -19.5)
+position = Vector2(15, -0.5)
+rotation = 1.58472
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_iivab")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_1srf3")
-animation = &"dead"
 autoplay = "default"
 
 [connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]
