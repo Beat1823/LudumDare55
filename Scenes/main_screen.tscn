@@ -52,6 +52,7 @@ z_index = 2
 material = SubResource("ShaderMaterial_rpe0b")
 position = Vector2(-29, -15)
 points = PackedVector2Array(790, 618, 964.008, 230.085, 1073, -75, 391, 404, 1193, 408, 535, -70)
+graceMultiplier = 1.25
 
 [node name="Car" parent="." instance=ExtResource("3_636hp")]
 position = Vector2(221, 244)
