@@ -105,4 +105,17 @@ offset_right = 288.0
 offset_bottom = 225.0
 text = "Menu"
 
+[node name="PentagramPaintedText" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 24.0
+offset_bottom = 113.0
+grow_horizontal = 2
+theme = ExtResource("2_amb8e")
+theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/bold_font_size = 45
+bbcode_enabled = true
+text = "[center]Pentagram painted: [b]
+50%"
+
 [connection signal="pressed" from="CanvasLayer/EndGameScreen/Button" to="." method="_on_button_pressed"]

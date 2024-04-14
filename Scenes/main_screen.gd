@@ -74,11 +74,9 @@ func placeBlood(pos):
 	if canPlace && PlayerData.currentBloodLevel > 0:
 		var blood = blood_scene.instantiate()
 		blood.position = pos
-		blood.name = "Blood"
 		add_child(blood, true)
-		PlayerData.currentBloodLevel -= 1
-		var bloodToPitch:float = 1.25 - inverse_lerp(0, PlayerData.maxBloodLevel, PlayerData.currentBloodLevel) / 2
-		SoundManager.playRandomSound3D(blood.placedSounds, pos, 0, bloodToPitch, 0, 0)
+		blood.onPlaced()
+		$Pentagram.checkPoint(pos, blood.radius)
 
 func _on_pentagram_on_covered():
 	$GameUi.showEndGameScreen(true)
