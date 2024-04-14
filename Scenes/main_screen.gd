@@ -40,7 +40,7 @@ func placeBlood(pos):
 	var canPlace = true
 	for child in get_children():
 		if (child.name.contains("Blood")):
-			if Geometry2D.is_point_in_circle(pos, child.position, child.radius):
+			if Geometry2D.is_point_in_circle(pos, child.position, child.radius * 0.75):
 				canPlace = false
 				break
 				
