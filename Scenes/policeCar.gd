@@ -8,6 +8,8 @@ var move_direction : Vector2 = Vector2.ZERO
 
 var is_alive:bool = true
 
+signal CarHit
+
 func _ready():
 	select_new_direction()
 	timer.start(walk_time)
@@ -30,7 +32,15 @@ func _physics_process(_delta):
 
 func unalive():
 	$CarDetector/CollisionShape2D.disabled = true
-
-	PlayerData.pedestrian_count -= 1
+	PlayerData.police_count -= 1
 	timer.stop()
 	is_alive = false
+	queue_free()
+
+
+func _on_car_detactor_body_entered(body):
+	if is_alive:
+		unalive()
+
+func _on_front_detector_body_entered(body):
+	CarHit.emit()
