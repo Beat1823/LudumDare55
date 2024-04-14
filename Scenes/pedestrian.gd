@@ -44,7 +44,7 @@ func unalive():
 		SoundManager.playRandomSound2D(killVoices, -8, 1, 0, 0)
 	SoundManager.playRandomSound3D(deathSounds, global_position)
 	is_alive = false
-
+	$AliveLight.visible = false
 func _on_car_detector_body_entered(body):
 	if is_alive:
 		CameraManager.SmallShake()

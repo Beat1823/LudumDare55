@@ -91,6 +91,7 @@ volume_db = -11.826
 [node name="GrayscaleLayer" type="CanvasLayer" parent="."]
 visible = false
 follow_viewport_enabled = true
+follow_viewport_scale = 500.0
 
 [node name="Grayscale" type="ColorRect" parent="GrayscaleLayer"]
 material = SubResource("ShaderMaterial_83la1")
