@@ -25,6 +25,7 @@ extends CharacterBody2D
 
 @onready var GameUI: Control = get_node("/root/MainScreen/GameUi")
 
+var is_alive = true
 var acceleration
 var steerDirection
 
@@ -48,7 +49,8 @@ func applyFriction():
 	acceleration += dragForce + frictionForce
 
 func getInput(delta):
-	
+	if !is_alive:
+		return
 	#var turn = 0
 	#if Input.is_action_pressed("turnRight"):
 		#turn += 1
@@ -115,12 +117,11 @@ func setTireSkidSound():
 func _ready():
 	set_physics_process(true)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-
 func _process(delta):
 	if Input.is_action_pressed("BloodTracks"):
 		BloodTrackPlaced.emit(position - transform.x * wheelBase/2.0)
 		
 func die():
+	is_alive = false
 	SoundManager.playSound2D(load("res://sound/dead.ogg"))
 	GameUI.showEndGameScreen(false)
