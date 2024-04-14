@@ -1,5 +1,7 @@
 extends Line2D
 
+@export var camera: Camera2D
+
 var _allPoints: Array
 
 func _on_draw():
@@ -21,7 +23,7 @@ func _on_draw():
 		for x in range(left.x, right.x):
 			var y = m*x + c
 			_allPoints.append(Vector2(x, y))
-			# draw_circle(Vector2(x, y), 3, Color.PURPLE)
+			#draw_circle(Vector2(x, y), 3, Color.PURPLE)
 			
 	print("all points %s" % _allPoints.size())
 	
@@ -34,6 +36,17 @@ func is_covered_in_blood() -> bool:
 	for child in get_parent().get_children():
 		if (child.name.contains("Blood")):
 			bloodAreas.push_back(child)
+			
+	var bloodCenters = []
+	for thing in bloodAreas:
+		var pos = camera.get_canvas_transform() * thing.position
+		bloodCenters.push_back(pos)
+			
+	material.set("shader_parameter/blood_points", bloodCenters)
+	material.set("shader_parameter/blood_num", bloodCenters.size())
+	
+	if bloodAreas.size() > 0:
+		material.set("shader_parameter/blood_radius", bloodAreas[0].radius)
 	
 	for point in _allPoints:
 		if !is_point_covered(point, bloodAreas):
