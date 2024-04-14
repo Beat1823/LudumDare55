@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://cqrmn6a1pt71l"]
+[gd_scene load_steps=15 format=3 uid="uid://cqrmn6a1pt71l"]
 
 [ext_resource type="Script" path="res://Scenes/DemonCar/Car.gd" id="1_ssejr"]
 [ext_resource type="Texture2D" uid="uid://c4f6a3g4eqg8w" path="res://Sprites/BloodBuggy-sheet.png" id="2_ilp2a"]
 [ext_resource type="AudioStream" uid="uid://dlgo5gjimy456" path="res://sound/car_loop.ogg" id="3_mkrhs"]
 [ext_resource type="AudioStream" uid="uid://cav6jrdlnomwx" path="res://sound/tire_skid.ogg" id="4_p3504"]
 [ext_resource type="Texture2D" uid="uid://empqa7punqae" path="res://Sprites/Tire.png" id="5_oappf"]
+[ext_resource type="Texture2D" uid="uid://dae62e1fnjx35" path="res://Sprites/light.png" id="6_00muv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rjrpc"]
 radius = 14.785
@@ -123,3 +124,17 @@ rotation = 1.57079
 sprite_frames = SubResource("SpriteFrames_khobd")
 autoplay = "default"
 frame_progress = 0.079744
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(104, -3.99954)
+scale = Vector2(1.15011, 0.714547)
+color = Color(1, 1, 0.686275, 0.498039)
+energy = 2.0
+texture = ExtResource("6_00muv")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(103, 8.00046)
+scale = Vector2(1.15011, 0.702243)
+color = Color(1, 1, 0.686275, 0.498039)
+energy = 2.0
+texture = ExtResource("6_00muv")

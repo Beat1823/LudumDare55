@@ -96,6 +96,11 @@ material = SubResource("ShaderMaterial_83la1")
 offset_right = 1184.0
 offset_bottom = 652.0
 
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(0.356863, 0.356863, 0.521569, 1)
+energy = 0.78
+blend_mode = 2
+
 [connection signal="onCovered" from="Pentagram" to="." method="_on_pentagram_on_covered"]
 [connection signal="progressUpdate" from="Pentagram" to="GameUi" method="_on_pentagram_progress_update"]
 [connection signal="timeout" from="PedestrianTimer" to="." method="_on_pedestrian_timer_timeout"]
