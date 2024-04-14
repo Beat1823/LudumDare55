@@ -4,6 +4,13 @@ extends Line2D
 
 var _allPoints: Array
 
+signal onCovered
+
+var covered:bool = false
+
+func _ready():
+	covered = false
+
 func _on_draw():
 	_allPoints.clear()
 	
@@ -29,7 +36,9 @@ func _on_draw():
 	
 func _process(delta):
 	if is_covered_in_blood():
-		print("You summoned the demon")
+		if !covered:
+			onCovered.emit()
+		covered = true
 	
 func is_covered_in_blood() -> bool:
 	var bloodAreas = []

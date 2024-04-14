@@ -70,4 +70,6 @@ func placeBlood(pos):
 		PlayerData.currentBloodLevel -= 1
 		var bloodToPitch:float = 1.25 - inverse_lerp(0, PlayerData.maxBloodLevel, PlayerData.currentBloodLevel) / 2
 		SoundManager.playRandomSound3D(blood.placedSounds, pos, 0, bloodToPitch, 0, 0)
-	
+
+func _on_pentagram_on_covered():
+	$GameUi.showEndGameScreen(true)
