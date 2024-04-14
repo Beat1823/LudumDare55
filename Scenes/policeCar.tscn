@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cnvm3bpon1t3u"]
+[gd_scene load_steps=10 format=3 uid="uid://cnvm3bpon1t3u"]
 
-[ext_resource type="Texture2D" uid="uid://nr0tpr38q0qh" path="res://Scenes/DemonCar/Sprites/YellowBuggy_0.png" id="1_11w28"]
 [ext_resource type="Script" path="res://Scenes/policeCar.gd" id="1_iek1t"]
+[ext_resource type="Texture2D" uid="uid://cp4rtyggwbrfk" path="res://Sprites/Poleees-sheet.png" id="2_2ks70"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t3u7x"]
 size = Vector2(28, 31)
@@ -9,13 +9,46 @@ size = Vector2(28, 31)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iivab"]
 size = Vector2(36, 23)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_tt32p"]
+atlas = ExtResource("2_2ks70")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58tom"]
+atlas = ExtResource("2_2ks70")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4y86"]
+atlas = ExtResource("2_2ks70")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wri2"]
+atlas = ExtResource("2_2ks70")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1srf3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tt32p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58tom")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4y86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wri2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="PoliceCar" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_iek1t")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_11w28")
 
 [node name="MovementTimer" type="Timer" parent="."]
 
@@ -32,6 +65,12 @@ collision_layer = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FrontDetector"]
 position = Vector2(0, -19.5)
 shape = SubResource("RectangleShape2D_iivab")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_1srf3")
+autoplay = "default"
+frame_progress = 0.0799532
 
 [connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]
 [connection signal="body_entered" from="CarDetector" to="." method="_on_car_detactor_body_entered"]
