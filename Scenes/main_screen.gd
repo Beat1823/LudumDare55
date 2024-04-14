@@ -61,7 +61,7 @@ func FillBlood():
 func HitCar():
 	if PlayerData.currentBloodLevel > 0.0:
 		PlayerData.currentBloodLevel -= 10.0
-	if PlayerData.currentBloodLevel < 0.0:
+	if PlayerData.currentBloodLevel <= 0.0:
 		PlayerData.currentBloodLevel = 0.0
 		var Car = get_node("Car")
 		Car.die()
