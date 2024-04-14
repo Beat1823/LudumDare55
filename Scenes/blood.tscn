@@ -39,6 +39,7 @@ placedSounds = Array[AudioStreamOggVorbis]([ExtResource("2_3k1xg"), ExtResource(
 shape = SubResource("CircleShape2D_13pic")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_tpwaj")
 autoplay = "default"
