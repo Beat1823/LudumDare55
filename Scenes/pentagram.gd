@@ -30,7 +30,7 @@ func _on_draw():
 		for x in range(left.x, right.x):
 			var y = m*x + c
 			_allPoints.append(Vector2(x, y))
-			#draw_circle(Vector2(x, y), 3, Color.PURPLE)
+			#draw_circle(Vector2(x, y), 12, Color.PURPLE)
 			
 	print("all points %s" % _allPoints.size())
 	
@@ -58,16 +58,19 @@ func is_covered_in_blood() -> bool:
 		var scale = camera.zoom.length()
 		material.set("shader_parameter/blood_radius", scale * bloodAreas[0].radius)
 	
+	var covered = true
 	for point in _allPoints:
 		if !is_point_covered(point, bloodAreas):
-			return false
-	return true
+			covered = false
+			break
+			
+	return covered
 	
 func is_point_covered(point: Vector2, bloodAreas: Array) -> bool:
 	for bloodArea in bloodAreas:
-		# print("point %s, bloodArea.position %s, bloodArea.radius %s" % [point, bloodArea.position, bloodArea.radius])
+		#print("point %s, bloodArea.position %s, bloodArea.radius %s" % [point, bloodArea.position, bloodArea.radius])
 		if Geometry2D.is_point_in_circle(point, bloodArea.position, bloodArea.radius):
-			# print("point %s" % point)
+			#print("point %s" % point)
 			return true
 	return false	
 	

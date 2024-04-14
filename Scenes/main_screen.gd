@@ -46,6 +46,7 @@ func _on_police_car_timer_timeout():
 #
 	# Set the mob's position to a random location.
 	police.position = spawn_location.position
+	police.CarHit.connect(HitCar)
 #
 	# Spawn the mob by adding it to the Main scene.
 	add_child(police)
@@ -53,6 +54,14 @@ func _on_police_car_timer_timeout():
 
 func FillBlood():
 	PlayerData.currentBloodLevel += 10.0
+	
+func HitCar():
+	if PlayerData.currentBloodLevel > 0.0:
+		PlayerData.currentBloodLevel -= 10.0
+	if PlayerData.currentBloodLevel < 0.0:
+		PlayerData.currentBloodLevel = 0.0
+		var Car = get_node("Car")
+		Car.die()
 
 func placeBlood(pos):
 	var canPlace = true

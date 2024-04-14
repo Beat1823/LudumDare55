@@ -26,7 +26,7 @@ void fragment() {
 	
 	if (covered)
 	{
-		COLOR = set_color;
+		COLOR = set_color * 3.0;
 	}
 	else
 	{

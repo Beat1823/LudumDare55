@@ -1,12 +1,14 @@
 extends CharacterBody2D
 
-@export var move_speed : float = 20
-@export var walk_time : float = 2
+@export var move_speed : float = 60
+@export var walk_time : float = 4
 var move_direction : Vector2 = Vector2.ZERO
 
 @onready var timer = $MovementTimer
 
 var is_alive:bool = true
+
+signal CarHit
 
 func _ready():
 	select_new_direction()
@@ -30,7 +32,15 @@ func _physics_process(_delta):
 
 func unalive():
 	$CarDetector/CollisionShape2D.disabled = true
-
-	PlayerData.pedestrian_count -= 1
+	PlayerData.police_count -= 1
 	timer.stop()
 	is_alive = false
+	queue_free()
+
+
+func _on_car_detactor_body_entered(body):
+	if is_alive:
+		unalive()
+
+func _on_front_detector_body_entered(body):
+	CarHit.emit()
