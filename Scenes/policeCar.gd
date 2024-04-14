@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-@export var move_speed : float = 20
-@export var walk_time : float = 2
+@export var move_speed : float = 60
+@export var walk_time : float = 4
 var move_direction : Vector2 = Vector2.ZERO
 
 @onready var timer = $MovementTimer
