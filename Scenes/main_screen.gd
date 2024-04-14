@@ -13,6 +13,9 @@ var placementCooldownMs = 5000
 var lastTriggerTime = 0
 
 func _ready():
+	PlayerData.pedestrian_count = 0
+	PlayerData.police_count = 0
+	
 	$PedestrianTimer.start()
 	$PoliceTimer.start()
 	var Car = get_node("Car")
