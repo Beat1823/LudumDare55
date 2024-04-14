@@ -75,7 +75,7 @@ func is_covered_in_blood() -> bool:
 		if (child.name.contains("Blood")):
 			bloodAreas.push_back(child)
 	
-	var progress = float(coveredAreas.size()) / _allPoints.size() * graceMultiplier
+	var progress = (float(coveredAreas.size()) / _allPoints.size()) * graceMultiplier
 	var covered = progress >= 1
 	
 	SoundProgress(progress)

@@ -81,7 +81,7 @@ func placeBlood(pos):
 	var canPlace = true
 	for child in get_children():
 		if (child.name.contains("Blood")):
-			if Geometry2D.is_point_in_circle(pos, child.position, child.radius * 0.75):
+			if Geometry2D.is_point_in_circle(pos, child.position, child.radius * 0.6):
 				canPlace = false
 				break
 				
@@ -90,7 +90,7 @@ func placeBlood(pos):
 		blood.position = pos
 		add_child(blood, true)
 		blood.onPlaced()
-		$Pentagram.checkPoint(pos, blood.radius * 1.25)
+		$Pentagram.checkPoint(pos, blood.radius)
 		
 	if PlayerData.currentBloodLevel <= 0 and lastTriggerTime + placementCooldownMs <= Time.get_ticks_msec():
 		SoundManager.playSound2D(load("res://sound/vox/vox_youreouttablood.ogg"), -8, 1, 0, 0)
