@@ -68,17 +68,7 @@ func applyFriction():
 func getInput(delta):
 	if !is_alive:
 		return
-	#var turn = 0
-	#if Input.is_action_pressed("turnRight"):
-		#turn += 1
-	#if Input.is_action_pressed("turnLeft"):	
-		#turn -= 1
-	
-	#if turn == 0:
-		#steerDirection = 0
-	#else:
-		#steerDirection += turn * delta * deg_to_rad(steeringRate)
-		#steerDirection = turn * min(abs(steerDirection), deg_to_rad(steeringAngle))
+		
 	var mousePosition = get_global_mouse_position()
 	var direction = (mousePosition - position).normalized()
 	
