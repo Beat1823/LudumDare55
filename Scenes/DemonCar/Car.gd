@@ -23,7 +23,7 @@ extends CharacterBody2D
 @export var wheelBR: AnimatedSprite2D
 @export var wheelBL: AnimatedSprite2D
 
-@onready var GameUI: Control = get_node("/root/MainScreen/GameUI")
+@onready var GameUI: Control = get_node("/root/MainScreen/GameUi")
 
 var acceleration
 var steerDirection
