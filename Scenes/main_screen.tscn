@@ -20,6 +20,8 @@ shader = ExtResource("5_lh6vx")
 shader_parameter/blood_points = null
 shader_parameter/blood_num = null
 shader_parameter/blood_radius = null
+shader_parameter/base_color = Color(0.560784, 0.0352941, 0.0352941, 0.431373)
+shader_parameter/set_color = Color(1, 0.670588, 0.831373, 0.756863)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_757d1"]
 outlines = Array[PackedVector2Array]([PackedVector2Array(64, 64, 1088, 64, 1088, 576, 64, 576)])
@@ -43,7 +45,7 @@ metadata/_edit_horizontal_guides_ = [-1602.0, 2090.0]
 z_index = 2
 material = SubResource("ShaderMaterial_rpe0b")
 position = Vector2(-29, -15)
-points = PackedVector2Array(808, 616, 964.008, 230.085, 1112, -136, 386.166, 366.508, 1192, 400, 472, -144)
+points = PackedVector2Array(790, 618, 964.008, 230.085, 1073, -75, 391, 404, 1193, 408, 535, -70)
 camera = NodePath("../Car/PlayerCamera")
 
 [node name="Car" parent="." instance=ExtResource("3_636hp")]
@@ -76,7 +78,7 @@ position = Vector2(56, 64)
 [node name="Map" type="Sprite2D" parent="."]
 z_index = -6
 texture_filter = 1
-position = Vector2(735, 260)
+position = Vector2(762, 259)
 scale = Vector2(2, 2)
 texture = ExtResource("6_spaal")
 

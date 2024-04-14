@@ -46,7 +46,8 @@ func is_covered_in_blood() -> bool:
 	material.set("shader_parameter/blood_num", bloodCenters.size())
 	
 	if bloodAreas.size() > 0:
-		material.set("shader_parameter/blood_radius", bloodAreas[0].radius)
+		var scale = camera.zoom.length()
+		material.set("shader_parameter/blood_radius", scale * bloodAreas[0].radius)
 	
 	for point in _allPoints:
 		if !is_point_covered(point, bloodAreas):

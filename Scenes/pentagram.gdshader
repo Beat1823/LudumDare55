@@ -3,6 +3,8 @@ shader_type canvas_item;
 uniform vec2 blood_points[600];
 uniform int blood_num;
 uniform float blood_radius;
+uniform vec4 base_color : source_color;
+uniform vec4 set_color : source_color;
 
 void vertex() {
 	// Called for every vertex the material is visible on.
@@ -24,15 +26,11 @@ void fragment() {
 	
 	if (covered)
 	{
-		COLOR.r = 1.0;
-		COLOR.g = 1.0;
-		COLOR.b = 1.0;
+		COLOR = set_color;
 	}
 	else
 	{
-		COLOR.r = 1.0;
-		COLOR.g = 0.0;
-		COLOR.b = 0.0;
+		COLOR = base_color;
 	}
 }
 
