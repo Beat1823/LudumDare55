@@ -12,6 +12,10 @@ var trauma_power = 2  # Trauma exponent. Use [2, 3].
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	limit_left = -1200
+	limit_bottom = 2020
+	limit_right = 2700
+	limit_top = -1600
 	randomize()
 
 func add_trauma(amount):
