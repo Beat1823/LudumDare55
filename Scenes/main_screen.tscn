@@ -38,7 +38,7 @@ script = ExtResource("1_3k6bo")
 pedestrian_scene = ExtResource("2_eihxn")
 police_car_scene = ExtResource("3_bxp2i")
 blood_scene = ExtResource("4_icjts")
-metadata/_edit_vertical_guides_ = [-1544.0, 2537.0]
+metadata/_edit_vertical_guides_ = [-1394.0, 2537.0]
 metadata/_edit_horizontal_guides_ = [-1602.0, 2090.0]
 
 [node name="Pentagram" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("4_nvv3w")]
@@ -53,7 +53,7 @@ position = Vector2(221, 244)
 
 [node name="PlayerCamera" type="Camera2D" parent="Car" node_paths=PackedStringArray("Car")]
 zoom = Vector2(2, 2)
-limit_left = -1540
+limit_left = -1395
 limit_top = -1602
 limit_right = 2537
 limit_bottom = 2090
