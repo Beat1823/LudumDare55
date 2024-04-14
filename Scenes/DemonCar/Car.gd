@@ -41,6 +41,23 @@ func _physics_process(delta):
 	setEngineSound()
 	setTireSkidSound()
 
+func makeTrails() -> void:
+	var BRTrail = Trail.create()
+	var WheelBR = get_node("WheelBR")
+	WheelBR.add_child(BRTrail)
+	
+	var BLTrail = Trail.create()
+	var WheelBL = get_node("WheelBL")
+	WheelBL.add_child(BLTrail)
+	
+	var FRTrail = Trail.create()
+	var WheelFR = get_node("WheelFR")
+	WheelFR.add_child(FRTrail)
+	
+	var FLTrail = Trail.create()
+	var WheelFL = get_node("WheelFL")
+	WheelFL.add_child(FLTrail)
+
 func applyFriction():
 	if velocity.length() < 5 : 
 		velocity = Vector2.ZERO
@@ -116,6 +133,7 @@ func setTireSkidSound():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_physics_process(true)
+	makeTrails()
 
 func _process(delta):
 	if Input.is_action_pressed("BloodTracks"):
