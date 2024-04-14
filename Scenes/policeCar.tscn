@@ -64,6 +64,10 @@ script = ExtResource("1_iek1t")
 
 [node name="MovementTimer" type="Timer" parent="."]
 
+[node name="IdleTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [node name="CarDetector" type="Area2D" parent="."]
 collision_layer = 4
 
@@ -77,7 +81,6 @@ collision_layer = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FrontDetector"]
 position = Vector2(15, -0.5)
 rotation = 1.58472
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_iivab")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -86,6 +89,11 @@ rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_1srf3")
 autoplay = "default"
 
+[node name="BounceTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]
+[connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]
 [connection signal="body_entered" from="CarDetector" to="." method="_on_car_detactor_body_entered"]
 [connection signal="body_entered" from="FrontDetector" to="." method="_on_front_detector_body_entered"]
+[connection signal="timeout" from="BounceTimer" to="." method="_on_bounce_timer_timeout"]

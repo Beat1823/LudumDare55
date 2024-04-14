@@ -8,6 +8,8 @@ var move_direction : Vector2 = Vector2.ZERO
 @onready var car = get_node("/root/MainScreen/Car")
 
 var is_alive:bool = true
+var is_moving:bool = true
+var is_bouncing:bool = false
 
 var target:Vector2 = Vector2(0.0, 0.0)
 
@@ -24,10 +26,14 @@ func _on_movement_timer_timeout():
 func select_new_direction():
 	target = car.position
 	var dir = position.direction_to(target)
-	move_direction = dir
+	if is_moving:
+		move_direction = dir
+	if is_bouncing:
+		move_direction = -dir
 	
 func _physics_process(_delta):
-	if is_alive:
+	if is_alive and is_moving:
+		
 		velocity = move_direction * move_speed 
 		
 		var angle_to_car = move_direction.angle()
@@ -51,6 +57,15 @@ func _on_car_detactor_body_entered(body):
 
 func _on_front_detector_body_entered(body):
 	CarHit.emit()
-	move_direction = -move_direction
-	
-	
+	is_bouncing = true
+	select_new_direction()
+	$BounceTimer.start()
+
+func _on_idle_timer_timeout():
+	is_moving = true
+	select_new_direction()
+
+func _on_bounce_timer_timeout():
+	is_moving = false
+	is_bouncing = false
+	$IdleTimer.start()
