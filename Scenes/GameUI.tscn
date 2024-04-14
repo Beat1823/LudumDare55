@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjlx8xho3o2gu"]
+[gd_scene load_steps=10 format=3 uid="uid://cjlx8xho3o2gu"]
 
 [ext_resource type="Script" path="res://Scenes/GameUI.gd" id="1_jj418"]
 [ext_resource type="Script" path="res://scripts/BloodMeter.gd" id="1_vubt5"]
@@ -6,6 +6,43 @@
 [ext_resource type="AudioStream" uid="uid://duo00u2nsx3en" path="res://sound/vox/vox_somuchblood.ogg" id="2_xufa7"]
 [ext_resource type="AudioStream" uid="uid://cvfh4mxnesq4f" path="res://sound/vox/vox_mortis.ogg" id="3_4kfrd"]
 [ext_resource type="AudioStream" uid="uid://dgpg4ak77cmqs" path="res://sound/vox/vox_exhausted.ogg" id="4_jc20o"]
+
+[sub_resource type="Animation" id="Animation_qylia"]
+resource_name = "fade"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EndGameCanvas/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_e4uxu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EndGameCanvas/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_12u8p"]
+_data = {
+"RESET": SubResource("Animation_e4uxu"),
+"fade": SubResource("Animation_qylia")
+}
 
 [node name="GameUi" type="Control"]
 layout_mode = 3
@@ -18,9 +55,9 @@ script = ExtResource("1_jj418")
 winSounds = Array[AudioStreamOggVorbis]([ExtResource("2_xufa7")])
 loseSounds = Array[AudioStreamOggVorbis]([ExtResource("3_4kfrd"), ExtResource("4_jc20o")])
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="BloodCanvas" type="CanvasLayer" parent="."]
 
-[node name="BloodMeter" type="Panel" parent="CanvasLayer"]
+[node name="BloodMeter" type="Panel" parent="BloodCanvas"]
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -34,7 +71,7 @@ grow_horizontal = 0
 grow_vertical = 2
 script = ExtResource("1_vubt5")
 
-[node name="Blood Meter" type="RichTextLabel" parent="CanvasLayer/BloodMeter"]
+[node name="Blood Meter" type="RichTextLabel" parent="BloodCanvas/BloodMeter"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.67
@@ -52,7 +89,7 @@ theme_override_constants/outline_size = 1
 theme_override_font_sizes/normal_font_size = 36
 text = "Blood Meter"
 
-[node name="FillRect" type="ColorRect" parent="CanvasLayer/BloodMeter"]
+[node name="FillRect" type="ColorRect" parent="BloodCanvas/BloodMeter"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -64,7 +101,31 @@ grow_vertical = 0
 scale = Vector2(1, -1)
 color = Color(0.854902, 0, 0, 1)
 
-[node name="EndGameScreen" type="Panel" parent="CanvasLayer"]
+[node name="PentagramPaintedText" type="RichTextLabel" parent="BloodCanvas"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 24.0
+offset_bottom = 113.0
+grow_horizontal = 2
+theme = ExtResource("2_amb8e")
+theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/bold_font_size = 45
+bbcode_enabled = true
+text = "[center]Pentagram painted: [b]
+50%"
+
+[node name="EndGameCanvas" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="ColorRect" type="ColorRect" parent="EndGameCanvas"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="EndGameScreen" type="Panel" parent="EndGameCanvas"]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -78,7 +139,7 @@ offset_bottom = 133.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Header" type="RichTextLabel" parent="CanvasLayer/EndGameScreen"]
+[node name="Header" type="RichTextLabel" parent="EndGameCanvas/EndGameScreen"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -90,7 +151,7 @@ theme_override_font_sizes/normal_font_size = 51
 bbcode_enabled = true
 text = "[center]You bloody did it!"
 
-[node name="Body" type="RichTextLabel" parent="CanvasLayer/EndGameScreen"]
+[node name="Body" type="RichTextLabel" parent="EndGameCanvas/EndGameScreen"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -102,7 +163,7 @@ theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
 text = "[center]The demon hath been summoned"
 
-[node name="Button" type="Button" parent="CanvasLayer/EndGameScreen"]
+[node name="Button" type="Button" parent="EndGameCanvas/EndGameScreen"]
 layout_mode = 0
 offset_left = 100.0
 offset_top = 156.0
@@ -110,17 +171,9 @@ offset_right = 288.0
 offset_bottom = 225.0
 text = "Menu"
 
-[node name="PentagramPaintedText" type="RichTextLabel" parent="CanvasLayer"]
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 24.0
-offset_bottom = 113.0
-grow_horizontal = 2
-theme = ExtResource("2_amb8e")
-theme_override_font_sizes/normal_font_size = 35
-theme_override_font_sizes/bold_font_size = 45
-bbcode_enabled = true
-text = "[center]Pentagram painted: [b]
-50%"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_12u8p")
+}
 
-[connection signal="pressed" from="CanvasLayer/EndGameScreen/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="EndGameCanvas/EndGameScreen/Button" to="." method="_on_button_pressed"]
