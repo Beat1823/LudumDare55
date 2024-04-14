@@ -32,10 +32,11 @@ func _physics_process(_delta):
 
 func unalive():
 	$CarDetector/CollisionShape2D.disabled = true
+	$FrontDetector/CollisionShape2D.disabled = true
 	PlayerData.police_count -= 1
 	timer.stop()
 	is_alive = false
-	queue_free()
+	$AnimatedSprite2D.play("dead")
 
 
 func _on_car_detactor_body_entered(body):
