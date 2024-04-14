@@ -23,6 +23,8 @@ extends CharacterBody2D
 @export var wheelBR: AnimatedSprite2D
 @export var wheelBL: AnimatedSprite2D
 
+@onready var GameUI: Control = get_node("/root/MainScreen/GameUI")
+
 var acceleration
 var steerDirection
 
@@ -46,18 +48,29 @@ func applyFriction():
 	acceleration += dragForce + frictionForce
 
 func getInput(delta):
-	var turn = 0
-	if Input.is_action_pressed("turnRight"):
-		turn += 1
-	if Input.is_action_pressed("turnLeft"):	
-		turn -= 1
 	
-	if turn == 0:
-		steerDirection = 0
-	else:
-		steerDirection += turn * delta * deg_to_rad(steeringRate)
-		steerDirection = turn * min(abs(steerDirection), deg_to_rad(steeringAngle))
-		
+	#var turn = 0
+	#if Input.is_action_pressed("turnRight"):
+		#turn += 1
+	#if Input.is_action_pressed("turnLeft"):	
+		#turn -= 1
+	
+	#if turn == 0:
+		#steerDirection = 0
+	#else:
+		#steerDirection += turn * delta * deg_to_rad(steeringRate)
+		#steerDirection = turn * min(abs(steerDirection), deg_to_rad(steeringAngle))
+	var mousePosition = get_global_mouse_position()
+	var direction = (mousePosition - position).normalized()
+	
+	var forward = global_transform.basis_xform(Vector2.RIGHT)
+	
+	var turnAngle = min(acos(forward.dot(direction)), deg_to_rad(steeringAngle))
+	
+	if direction.cross(forward) > 0:
+		turnAngle = -turnAngle
+	
+	steerDirection = turnAngle
 	wheelFL.rotation = deg_to_rad(90) + steerDirection
 	wheelFR.rotation = deg_to_rad(90) + steerDirection
 	
@@ -110,4 +123,4 @@ func _process(delta):
 		
 func die():
 	print("Oopsie, you died")
-	queue_free()
+	GameUI.showEndGameScreen(false)
