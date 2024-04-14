@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnvm3bpon1t3u"]
+
+[ext_resource type="Texture2D" uid="uid://nr0tpr38q0qh" path="res://Scenes/DemonCar/Sprites/YellowBuggy_0.png" id="1_11w28"]
+[ext_resource type="Script" path="res://Scenes/policeCar.gd" id="1_iek1t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t3u7x"]
+size = Vector2(28, 47)
+
+[node name="PoliceCar" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_iek1t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_11w28")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_t3u7x")
+
+[node name="MovementTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]
