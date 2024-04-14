@@ -45,7 +45,6 @@ func placeBlood(pos):
 				break
 				
 	if canPlace && currentBloodLevel > 0:
-		print("blood %s" % pos)
 		var blood = blood_scene.instantiate()
 		blood.position = pos
 		blood.name = "Blood"
