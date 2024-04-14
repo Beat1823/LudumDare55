@@ -41,7 +41,7 @@ func unalive():
 	timer.stop()
 	PedestrianHit.emit()
 	if randf() <= chanceToPlayKillSound:
-		SoundManager.playRandomSound2D(killVoices, 0, 1, 0, 0)
+		SoundManager.playRandomSound2D(killVoices, -8, 1, 0, 0)
 	SoundManager.playRandomSound3D(deathSounds, global_position)
 	is_alive = false
 

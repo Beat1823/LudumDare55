@@ -1,7 +1,7 @@
 extends Node2D
 
 func playSound2D(sound:AudioStream, vol = 0, pitch = 1, randVol = 3, randPitch = 0.1):
-	var player = AudioStreamPlayer2D.new()
+	var player = AudioStreamPlayer.new()
 	player.stream = sound
 	player.volume_db = vol - randf_range(0, randVol)
 	player.pitch_scale = pitch + randf_range(-randPitch, randPitch)

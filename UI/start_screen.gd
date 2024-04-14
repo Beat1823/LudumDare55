@@ -1,7 +1,7 @@
 extends Control
 
 func _ready():
-	SoundManager.playSound2D(load("res://sound/vox/vox_blooddrive.ogg"), 0, 1, 0, 0)
+	SoundManager.playSound2D(load("res://sound/vox/vox_blooddrive.ogg"), -8, 1, 0, 0)
 	SoundManager.playSound2D(load("res://sound/introscreen.ogg"), 0, 1, 0, 0)
 
 func _on_play_button_up():
