@@ -19,10 +19,10 @@ func _on_movement_timer_timeout():
 	timer.start(walk_time)
 	
 func select_new_direction():
-	move_direction = Vector2(
-		randi_range(-1,1),
-		randi_range(-1,1)
-	)
+	var car = get_node("/root/MainScreen/Car")
+	var carPosition = car.position
+	var dir = position.direction_to(carPosition)
+	move_direction = dir
 	
 func _physics_process(_delta):
 	if is_alive:
