@@ -3,7 +3,9 @@ extends CharacterBody2D
 @export var move_speed : float = 20
 @export var walk_time : float = 2
 @export var deathSounds:Array[AudioStreamOggVorbis]
+@export var killVoices:Array[AudioStreamOggVorbis]
 var move_direction : Vector2 = Vector2.ZERO
+@export var chanceToPlayKillSound = 0.5
 
 @onready var timer = $MovementTimer
 
@@ -38,6 +40,8 @@ func unalive():
 	PlayerData.pedestrian_count -= 1
 	timer.stop()
 	PedestrianHit.emit()
+	if randf() <= chanceToPlayKillSound:
+		SoundManager.playRandomSound2D(killVoices, 0, 1, 0, 0)
 	SoundManager.playRandomSound3D(deathSounds, global_position)
 	is_alive = false
 

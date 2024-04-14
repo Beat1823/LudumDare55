@@ -37,6 +37,7 @@ func unalive():
 	timer.stop()
 	is_alive = false
 	$AnimatedSprite2D.play("dead")
+	SoundManager.playSound3D(load("res://sound/policecar_destroy.ogg"), position)
 
 
 func _on_car_detactor_body_entered(body):

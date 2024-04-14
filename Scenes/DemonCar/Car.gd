@@ -122,5 +122,5 @@ func _process(delta):
 		BloodTrackPlaced.emit(position - transform.x * wheelBase/2.0)
 		
 func die():
-	print("Oopsie, you died")
+	SoundManager.playSound2D(load("res://sound/dead.ogg"))
 	GameUI.showEndGameScreen(false)

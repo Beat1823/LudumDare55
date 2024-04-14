@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://digfx032tves5"]
+[gd_scene load_steps=18 format=3 uid="uid://digfx032tves5"]
 
 [ext_resource type="Script" path="res://Scenes/pedestrian.gd" id="1_rrmj4"]
 [ext_resource type="AudioStream" uid="uid://c3sdanksc8wy1" path="res://sound/ped_hit_1.ogg" id="2_hlv7l"]
@@ -9,6 +9,12 @@
 [ext_resource type="AudioStream" uid="uid://c505mtk0tx3s2" path="res://sound/ped_hit_3.ogg" id="4_bfc58"]
 [ext_resource type="Texture2D" uid="uid://i43s23m8l17y" path="res://Sprites/ped-man/ped-man-step-right.png" id="5_015a7"]
 [ext_resource type="AudioStream" uid="uid://dhqmjipp51xns" path="res://sound/ped_hit_4.ogg" id="5_s7got"]
+[ext_resource type="AudioStream" uid="uid://bfudcqsx4f7xc" path="res://sound/vox/vox_bloodcode.ogg" id="6_5h2d7"]
+[ext_resource type="AudioStream" uid="uid://ocojhk86mesn" path="res://sound/vox/vox_carnage.ogg" id="7_2xq6o"]
+[ext_resource type="AudioStream" uid="uid://11raf27bg2w1" path="res://sound/vox/vox_destruction.ogg" id="8_w83gk"]
+[ext_resource type="AudioStream" uid="uid://buse8uyvhdvwe" path="res://sound/vox/vox_godie.ogg" id="9_ha4pc"]
+[ext_resource type="AudioStream" uid="uid://1quwjrbyml38" path="res://sound/vox/vox_manslaughter.ogg" id="10_x5x2y"]
+[ext_resource type="AudioStream" uid="uid://bjl5id8mqyto5" path="res://sound/vox/vox_megadeath.ogg" id="11_m2cll"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2kvha"]
 animations = [{
@@ -54,6 +60,7 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_rrmj4")
 deathSounds = Array[AudioStreamOggVorbis]([ExtResource("2_hlv7l"), ExtResource("3_0d8q6"), ExtResource("4_bfc58"), ExtResource("5_s7got")])
+killVoices = Array[AudioStreamOggVorbis]([ExtResource("6_5h2d7"), ExtResource("7_2xq6o"), ExtResource("8_w83gk"), ExtResource("9_ha4pc"), ExtResource("10_x5x2y"), ExtResource("11_m2cll")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = -1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cnvm3bpon1t3u"]
+[gd_scene load_steps=12 format=3 uid="uid://cnvm3bpon1t3u"]
 
 [ext_resource type="Script" path="res://Scenes/policeCar.gd" id="1_iek1t"]
 [ext_resource type="Texture2D" uid="uid://cp4rtyggwbrfk" path="res://Sprites/Poleees-sheet.png" id="2_2ks70"]

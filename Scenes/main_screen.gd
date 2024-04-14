@@ -9,6 +9,9 @@ extends Node2D
 @export var PEDESTRIAN_LIMIT = 5
 @export var POLICE_CAR_LIMIT = 2 
 
+var placementCooldownMs = 5000
+var lastTriggerTime = 0
+
 func _ready():
 	$PedestrianTimer.start()
 	$PoliceTimer.start()
@@ -77,6 +80,10 @@ func placeBlood(pos):
 		add_child(blood, true)
 		blood.onPlaced()
 		$Pentagram.checkPoint(pos, blood.radius * 1.25)
+		
+	if PlayerData.currentBloodLevel <= 0 and lastTriggerTime + placementCooldownMs <= Time.get_ticks_msec():
+		SoundManager.playSound2D(load("res://sound/vox/vox_youreouttablood.ogg"), 0, 1, 0, 0)
+		lastTriggerTime = Time.get_ticks_msec()
 
 func _on_pentagram_on_covered():
 	$GameUi.showEndGameScreen(true)

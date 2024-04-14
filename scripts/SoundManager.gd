@@ -19,5 +19,8 @@ func playSound3D(sound:AudioStream, pos, vol = 0, pitch = 1, randVol = 3, randPi
 	player.play()
 	player.connect("finished", player.queue_free)
 
+func playRandomSound2D(sounds:Array[AudioStreamOggVorbis], vol = 0, pitch = 1, randVol = 3, randPitch = 0.1):
+	playSound2D(sounds.pick_random(), vol, pitch, randVol, randPitch)
+
 func playRandomSound3D(sounds:Array[AudioStreamOggVorbis], pos, vol = 0, pitch = 1, randVol = 3, randPitch = 0.1):
 	playSound3D(sounds.pick_random(), pos, vol, pitch, randVol, randPitch)
