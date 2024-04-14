@@ -63,7 +63,7 @@ func getInput(delta):
 	
 	var forward = global_transform.basis_xform(Vector2.RIGHT)
 	
-	var turnAngle = acos(forward.dot(direction))
+	var turnAngle = min(acos(forward.dot(direction)), deg_to_rad(steeringAngle))
 	
 	if direction.cross(forward) > 0:
 		turnAngle = -turnAngle
