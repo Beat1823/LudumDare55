@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjum8d0eal8fm"]
+
+[ext_resource type="Script" path="res://scripts/BloodMeter.gd" id="1_vubt5"]
+[ext_resource type="Theme" uid="uid://c3i6pb5edn2lb" path="res://theme.tres" id="2_amb8e"]
+
+[node name="GameUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BloodMeter" type="Panel" parent="CanvasLayer"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -54.0
+offset_right = -71.0
+offset_bottom = 54.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("1_vubt5")
+
+[node name="Blood Meter" type="RichTextLabel" parent="CanvasLayer/BloodMeter"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.67
+anchor_top = -0.106
+anchor_right = 1.353
+anchor_bottom = 0.009
+offset_left = -89.5
+offset_top = -42.552
+offset_right = 43.35
+offset_bottom = -16.972
+theme = ExtResource("2_amb8e")
+theme_override_colors/default_color = Color(1, 0.152941, 0.109804, 1)
+theme_override_colors/font_outline_color = Color(0.509804, 0.0117647, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/normal_font_size = 36
+text = "Blood Meter"
+
+[node name="FillRect" type="ColorRect" parent="CanvasLayer/BloodMeter"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 108.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1, -1)
+color = Color(0.854902, 0, 0, 1)
