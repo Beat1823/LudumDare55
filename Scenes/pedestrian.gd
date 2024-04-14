@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var move_speed : float = 20
 @export var walk_time : float = 2
+@export var deathSounds:Array[AudioStreamOggVorbis]
 var move_direction : Vector2 = Vector2.ZERO
 
 @onready var timer = $MovementTimer
@@ -31,12 +32,15 @@ func _physics_process(_delta):
 		rotation = atan2(move_direction.y, move_direction.x)
 		move_and_slide()
 
+func unalive():
+	$CarDetector/CollisionShape2D.disabled = true
+	$AnimatedSprite2D.play("dead")
+	PlayerData.pedestrian_count -= 1
+	timer.stop()
+	PedestrianHit.emit()
+	SoundManager.playRandomSound3D(deathSounds, global_position)
+	is_alive = false
 
 func _on_car_detector_body_entered(body):
 	if is_alive:
-		$CarDetector/CollisionShape2D.disabled = true
-		$AnimatedSprite2D.play("dead")
-		PlayerData.pedestrian_count -= 1
-		is_alive = false
-		timer.stop()
-		PedestrianHit.emit()
+		unalive()

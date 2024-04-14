@@ -12,6 +12,12 @@ extends CharacterBody2D
 @export var tractionFast = 0.1
 @export var tractionSlow = 1.0
 
+@export var engine_volume_multiplier = 3
+@export var engine_pitch_scale = 0.5
+@export var min_engine_volume = -10
+@export var tireSkidSound:AudioStream = preload("res://sound/tire_skid.ogg")
+@export var skid_min_rot = 0.3
+
 var acceleration
 var steerDirection
 
@@ -24,6 +30,8 @@ func _physics_process(delta):
 	calcSteering(delta)
 	velocity += acceleration * delta
 	move_and_slide()
+	setEngineSound()
+	setTireSkidSound()
 
 func applyFriction():
 	if velocity.length() < 5 : 
@@ -68,7 +76,22 @@ func calcSteering(delta):
 		velocity = -newHeading * min(velocity.length(), maxReverseSpeed)
 	rotation = newHeading.angle()
 	
- 
+func setEngineSound():
+	var volume_scale = 80
+	var EngineSound:AudioStreamPlayer2D = $EngineSound
+	var unclampedEngineSound:float = inverse_lerp(0, engine_power / engine_volume_multiplier, velocity.length()) * volume_scale - volume_scale
+	EngineSound.volume_db = clampf(unclampedEngineSound, min_engine_volume, 0)
+	EngineSound.pitch_scale = inverse_lerp(0, engine_power, velocity.length()) * engine_pitch_scale * 2 + 0.5
+
+func setTireSkidSound():
+	if abs(steerDirection) > skid_min_rot:
+		if velocity.length() > slipSpeed:
+			if !$TireSkidSound.playing:
+				$TireSkidSound.play(randf_range(0, tireSkidSound.get_length()))
+			return
+	if $TireSkidSound.playing:
+		$TireSkidSound.stop()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_physics_process(true)

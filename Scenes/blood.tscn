@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dm5e0td7uarfc"]
+[gd_scene load_steps=10 format=3 uid="uid://dm5e0td7uarfc"]
 
 [ext_resource type="Script" path="res://Scenes/blood.gd" id="1_v200f"]
+[ext_resource type="AudioStream" uid="uid://cwdi7v8yd2kya" path="res://sound/blood_drop_1.ogg" id="2_3k1xg"]
 [ext_resource type="Texture2D" uid="uid://b24m5i8h1gp3t" path="res://Sprites/blood.png" id="2_tffhm"]
+[ext_resource type="AudioStream" uid="uid://d4cm0hapjj716" path="res://sound/blood_drop_2.ogg" id="3_w4qsx"]
+[ext_resource type="AudioStream" uid="uid://c58jbha11pudi" path="res://sound/blood_drop_3.ogg" id="4_isuev"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_13pic"]
 radius = 32.0
@@ -30,6 +33,7 @@ animations = [{
 
 [node name="Blood" type="Area2D"]
 script = ExtResource("1_v200f")
+placedSounds = Array[AudioStreamOggVorbis]([ExtResource("2_3k1xg"), ExtResource("3_w4qsx"), ExtResource("4_isuev")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_13pic")

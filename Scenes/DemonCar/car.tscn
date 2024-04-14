@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqrmn6a1pt71l"]
+[gd_scene load_steps=7 format=3 uid="uid://cqrmn6a1pt71l"]
 
 [ext_resource type="Texture2D" uid="uid://bx5sow4qmk56p" path="res://Scenes/DemonCar/Sprites/BloodBuggy.png" id="1_61gt2"]
 [ext_resource type="Script" path="res://Scenes/DemonCar/Car.gd" id="1_ssejr"]
+[ext_resource type="AudioStream" uid="uid://dlgo5gjimy456" path="res://sound/car_loop.ogg" id="3_mkrhs"]
+[ext_resource type="AudioStream" uid="uid://cav6jrdlnomwx" path="res://sound/tire_skid.ogg" id="4_p3504"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rjrpc"]
 radius = 14.785
@@ -30,3 +32,11 @@ shape = SubResource("CapsuleShape2D_rjrpc")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_y74uf")
+
+[node name="EngineSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_mkrhs")
+volume_db = -80.0
+autoplay = true
+
+[node name="TireSkidSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_p3504")
