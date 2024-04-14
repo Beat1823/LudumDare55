@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cnvm3bpon1t3u"]
+[gd_scene load_steps=13 format=3 uid="uid://cnvm3bpon1t3u"]
 
 [ext_resource type="Script" path="res://Scenes/policeCar.gd" id="1_iek1t"]
 [ext_resource type="Texture2D" uid="uid://cp4rtyggwbrfk" path="res://Sprites/Poleees-sheet.png" id="2_2ks70"]
+[ext_resource type="AudioStream" uid="uid://bujtaibkxk8dj" path="res://sound/vox/siren_1.ogg" id="2_h1cxj"]
+[ext_resource type="AudioStream" uid="uid://ekadrdie01rp" path="res://sound/vox/siren_2.ogg" id="3_ifily"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t3u7x"]
 size = Vector2(28, 31)
@@ -61,6 +63,7 @@ animations = [{
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_iek1t")
+siren_sounds = Array[AudioStreamOggVorbis]([ExtResource("2_h1cxj"), ExtResource("3_ifily")])
 
 [node name="MovementTimer" type="Timer" parent="."]
 
@@ -92,6 +95,10 @@ autoplay = "default"
 
 [node name="BounceTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="SirenSound" type="AudioStreamPlayer2D" parent="."]
+attenuation = 3.73213
+panning_strength = 2.0
 
 [connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]
 [connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]

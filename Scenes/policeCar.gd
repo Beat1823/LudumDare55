@@ -2,6 +2,11 @@ extends CharacterBody2D
 
 @export var move_speed : float = 100
 @export var walk_time : float = 1
+@export var siren_sounds: Array[AudioStreamOggVorbis]
+
+@export var dopplerSpeedDelta = 800
+@export var dopplerPitchRange = 0.3
+
 var move_direction : Vector2 = Vector2.ZERO
 
 @onready var timer = $MovementTimer
@@ -18,6 +23,13 @@ signal CarHit
 func _ready():
 	select_new_direction()
 	timer.start(walk_time)
+	$SirenSound.stream = siren_sounds.pick_random()
+	$SirenSound.play()
+	
+func _process(delta):
+	var delta_vector:Vector2 = car.velocity - velocity
+	var clamped_delta_vector = clampf(delta_vector.length(), -dopplerSpeedDelta, dopplerSpeedDelta)
+	$SirenSound.pitch_scale = clamped_delta_vector / (dopplerSpeedDelta / dopplerPitchRange) + 1 
 
 func _on_movement_timer_timeout():
 	select_new_direction()
@@ -48,6 +60,7 @@ func unalive():
 	timer.stop()
 	is_alive = false
 	$AnimatedSprite2D.play("dead")
+	$SirenSound.stop()
 	SoundManager.playSound3D(load("res://sound/policecar_destroy.ogg"), position)
 
 
