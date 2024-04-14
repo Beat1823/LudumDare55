@@ -51,6 +51,7 @@ size = Vector2(16.2302, 30)
 
 [node name="Pedestrian" type="CharacterBody2D"]
 collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_rrmj4")
 deathSounds = Array[AudioStreamOggVorbis]([ExtResource("2_hlv7l"), ExtResource("3_0d8q6"), ExtResource("4_bfc58"), ExtResource("5_s7got")])
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://cei1e8gtakjed"]
+[gd_scene load_steps=15 format=3 uid="uid://cei1e8gtakjed"]
 
 [ext_resource type="Script" path="res://Scenes/main_screen.gd" id="1_3k6bo"]
 [ext_resource type="PackedScene" uid="uid://digfx032tves5" path="res://Scenes/pedestrian.tscn" id="2_eihxn"]
 [ext_resource type="PackedScene" uid="uid://cqrmn6a1pt71l" path="res://Scenes/DemonCar/car.tscn" id="3_636hp"]
+[ext_resource type="PackedScene" uid="uid://cnvm3bpon1t3u" path="res://Scenes/policeCar.tscn" id="3_bxp2i"]
 [ext_resource type="PackedScene" uid="uid://dm5e0td7uarfc" path="res://Scenes/blood.tscn" id="4_icjts"]
 [ext_resource type="PackedScene" uid="uid://dw8elcqe870ht" path="res://Scenes/pentagram.tscn" id="4_nvv3w"]
 [ext_resource type="Script" path="res://Scenes/PlayerCamera.gd" id="6_1oiiw"]
@@ -25,6 +26,7 @@ point_count = 5
 [node name="MainScreen" type="Node2D"]
 script = ExtResource("1_3k6bo")
 pedestrian_scene = ExtResource("2_eihxn")
+police_car_scene = ExtResource("3_bxp2i")
 blood_scene = ExtResource("4_icjts")
 metadata/_edit_vertical_guides_ = [-1544.0, 2537.0]
 metadata/_edit_horizontal_guides_ = [-1602.0, 2090.0]
@@ -47,6 +49,9 @@ Car = NodePath("..")
 
 [node name="PedestrianTimer" type="Timer" parent="."]
 wait_time = 3.0
+
+[node name="PoliceTimer" type="Timer" parent="."]
+wait_time = 5.0
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_757d1")
@@ -73,3 +78,4 @@ MusicPlayer = NodePath("AudioStreamPlayer")
 volume_db = -15.0
 
 [connection signal="timeout" from="PedestrianTimer" to="." method="_on_pedestrian_timer_timeout"]
+[connection signal="timeout" from="PoliceTimer" to="." method="_on_police_car_timer_timeout"]
