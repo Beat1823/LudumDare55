@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqrmn6a1pt71l"]
+[gd_scene load_steps=12 format=3 uid="uid://cqrmn6a1pt71l"]
 
 [ext_resource type="Texture2D" uid="uid://bx5sow4qmk56p" path="res://Scenes/DemonCar/Sprites/BloodBuggy.png" id="1_61gt2"]
 [ext_resource type="Script" path="res://Scenes/DemonCar/Car.gd" id="1_ssejr"]
 [ext_resource type="AudioStream" uid="uid://dlgo5gjimy456" path="res://sound/car_loop.ogg" id="3_mkrhs"]
 [ext_resource type="AudioStream" uid="uid://cav6jrdlnomwx" path="res://sound/tire_skid.ogg" id="4_p3504"]
+[ext_resource type="Texture2D" uid="uid://empqa7punqae" path="res://Sprites/Tire.png" id="5_oappf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rjrpc"]
 radius = 14.785
@@ -20,10 +21,43 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Car" type="CharacterBody2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwood"]
+atlas = ExtResource("5_oappf")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6j5o"]
+atlas = ExtResource("5_oappf")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhbda"]
+atlas = ExtResource("5_oappf")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_khobd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwood")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6j5o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhbda")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Car" type="CharacterBody2D" node_paths=PackedStringArray("wheelFR", "wheelFL", "wheelBR", "wheelBL")]
 rotation = -6.28319
 collision_mask = 6
 script = ExtResource("1_ssejr")
+wheelFR = NodePath("WheelFR")
+wheelFL = NodePath("WheelFL")
+wheelBR = NodePath("WheelBR")
+wheelBL = NodePath("WheelBL")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
@@ -40,3 +74,39 @@ autoplay = true
 
 [node name="TireSkidSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_p3504")
+
+[node name="WheelBL" type="AnimatedSprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+position = Vector2(-10.9999, -12.0001)
+rotation = 1.57079
+sprite_frames = SubResource("SpriteFrames_khobd")
+autoplay = "default"
+frame_progress = 0.977172
+
+[node name="WheelFL" type="AnimatedSprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+position = Vector2(15, -10.9999)
+rotation = 1.57079
+sprite_frames = SubResource("SpriteFrames_khobd")
+autoplay = "default"
+frame_progress = 0.855067
+
+[node name="WheelFR" type="AnimatedSprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+position = Vector2(15, 11.0001)
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_khobd")
+autoplay = "default"
+frame_progress = 0.599028
+
+[node name="WheelBR" type="AnimatedSprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+position = Vector2(-11.0001, 12)
+rotation = 1.57079
+sprite_frames = SubResource("SpriteFrames_khobd")
+autoplay = "default"
+frame_progress = 0.00286836

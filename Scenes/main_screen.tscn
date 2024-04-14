@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cqrmn6a1pt71l" path="res://Scenes/DemonCar/car.tscn" id="3_636hp"]
 [ext_resource type="PackedScene" uid="uid://cnvm3bpon1t3u" path="res://Scenes/policeCar.tscn" id="3_bxp2i"]
 [ext_resource type="PackedScene" uid="uid://dm5e0td7uarfc" path="res://Scenes/blood.tscn" id="4_icjts"]
-[ext_resource type="PackedScene" uid="uid://dw8elcqe870ht" path="res://Scenes/pentagram.tscn" id="4_nvv3w"]
+[ext_resource type="PackedScene" path="res://Scenes/pentagram.tscn" id="4_nvv3w"]
 [ext_resource type="Script" path="res://Scenes/PlayerCamera.gd" id="6_1oiiw"]
 [ext_resource type="Texture2D" uid="uid://ceub26rlc45gc" path="res://Sprites/map.png" id="6_spaal"]
 [ext_resource type="Script" path="res://scripts/MusicPlayer.gd" id="7_alry0"]

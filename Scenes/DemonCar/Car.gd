@@ -18,6 +18,11 @@ extends CharacterBody2D
 @export var tireSkidSound:AudioStream = preload("res://sound/tire_skid.ogg")
 @export var skid_min_rot = 0.3
 
+@export var wheelFR: AnimatedSprite2D
+@export var wheelFL: AnimatedSprite2D
+@export var wheelBR: AnimatedSprite2D
+@export var wheelBL: AnimatedSprite2D
+
 var acceleration
 var steerDirection
 
@@ -53,7 +58,8 @@ func getInput(delta):
 		steerDirection += turn * delta * deg_to_rad(steeringRate)
 		steerDirection = turn * min(abs(steerDirection), deg_to_rad(steeringAngle))
 		
-	# print(steerDirection)
+	wheelFL.rotation = deg_to_rad(90) + steerDirection
+	wheelFR.rotation = deg_to_rad(90) + steerDirection
 	
 	if Input.is_action_pressed("accelerate"):
 		acceleration = transform.x * engine_power
