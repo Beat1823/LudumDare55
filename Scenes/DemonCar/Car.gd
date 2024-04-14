@@ -23,6 +23,8 @@ extends CharacterBody2D
 @export var wheelBR: AnimatedSprite2D
 @export var wheelBL: AnimatedSprite2D
 
+@onready var GameUI: Control = get_node("/root/MainScreen/GameUI")
+
 var acceleration
 var steerDirection
 
@@ -121,4 +123,4 @@ func _process(delta):
 		
 func die():
 	print("Oopsie, you died")
-	queue_free()
+	GameUI.showEndGameScreen(false)
