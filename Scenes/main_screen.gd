@@ -85,7 +85,7 @@ func placeBlood(pos):
 		$Pentagram.checkPoint(pos, blood.radius * 1.25)
 		
 	if PlayerData.currentBloodLevel <= 0 and lastTriggerTime + placementCooldownMs <= Time.get_ticks_msec():
-		SoundManager.playSound2D(load("res://sound/vox/vox_youreouttablood.ogg"), 0, 1, 0, 0)
+		SoundManager.playSound2D(load("res://sound/vox/vox_youreouttablood.ogg"), -8, 1, 0, 0)
 		lastTriggerTime = Time.get_ticks_msec()
 
 func _on_pentagram_on_covered():
