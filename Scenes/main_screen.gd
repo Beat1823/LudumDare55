@@ -12,6 +12,8 @@ extends Node2D
 var placementCooldownMs = 500
 var lastTriggerTime = 0
 
+var hasWon = false
+
 func _ready():
 	PlayerData.pedestrian_count = 0
 	PlayerData.police_count = 0
@@ -67,6 +69,9 @@ func FillBlood():
 	PlayerData.currentBloodLevel += 10.0
 	
 func HitCar():
+	if hasWon:
+		return
+		
 	SoundManager.playSound2D(load("res://sound/take_damage.ogg"), -3)
 	CameraManager.MidShake()
 	if PlayerData.currentBloodLevel > 0.0:
@@ -99,4 +104,5 @@ func placeBlood(pos):
 		lastTriggerTime = Time.get_ticks_msec()
 
 func _on_pentagram_on_covered():
+	hasWon = true
 	$GameUi.showEndGameScreen(true)
